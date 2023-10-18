@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    use Uuid, Traits\Scope;
+    use Uuid;
+    use Traits\Scope;
 
     protected $table = 'usuario';
     // protected $guarded = ['id'];
