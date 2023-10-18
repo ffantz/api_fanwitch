@@ -2,7 +2,6 @@
 
 namespace App\Helpers\Facade;
 
-
 use Illuminate\Support\Facades\Facade;
 use App\Helpers\HelperMigrate;
 

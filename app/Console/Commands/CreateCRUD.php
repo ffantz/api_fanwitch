@@ -99,17 +99,15 @@ class CreateCRUD extends Command
     private function createFile($pathDir, $className, $templateInfo, $type = null)
     {
         $templateName = $type ?? "Model";
-        $content = "<?php\n".view("crud_templates.{$templateName}Template", $templateInfo)->render()."\n";
-        $pathDir = app_path().$pathDir;
-        if (!is_dir($pathDir))
-        {
+        $content = "<?php\n" . view("crud_templates.{$templateName}Template", $templateInfo)->render() . "\n";
+        $pathDir = app_path() . $pathDir;
+        if (!is_dir($pathDir)) {
             mkdir($pathDir);
         }
 
-        $completePath = $pathDir."/".$className.$type.".php";
-        if (file_exists($completePath))
-        {
-            $completePath = $pathDir."/".$className.$type."_new.php";
+        $completePath = $pathDir . "/" . $className . $type . ".php";
+        if (file_exists($completePath)) {
+            $completePath = $pathDir . "/" . $className . $type . "_new.php";
         }
         file_put_contents($completePath, $content);
         $type = $type ?? "Model";
@@ -120,26 +118,18 @@ class CreateCRUD extends Command
     {
         $tableName = "";
         // PERCORRE O NOME DA CLASSE PARA MONTAR NOME DA TABELA
-        for ($i = 0; $i < strlen($className); $i++)
-        {
+        for ($i = 0; $i < strlen($className); $i++) {
             // VERIFICA SE LETRA É MAIUSCULA
-            if (preg_match('/^[^a-z]*$/', $className[$i]))
-            {
-                if ($i > 0)
-                {
-                    $tableName .= trim("_".strtolower($className[$i]));
-                }
-                else
-                {
+            if (preg_match('/^[^a-z]*$/', $className[$i])) {
+                if ($i > 0) {
+                    $tableName .= trim("_" . strtolower($className[$i]));
+                } else {
                     $tableName .= trim(strtolower($className[$i]));
                 }
-            }
-            else
-            {
+            } else {
                 $tableName .= trim(strtolower($className[$i]));
             }
         }
         return $tableName;
     }
-
 }

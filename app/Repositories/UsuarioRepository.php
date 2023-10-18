@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class UsuarioRepository extends GenericRepository implements RepositoryInterface
         return Usuario::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new Usuario)->getKeyName();
+        return (new Usuario())->getKeyName();
     }
 }
-

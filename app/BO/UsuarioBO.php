@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\UsuarioTrait;
 use App\Models\Usuario;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class UsuarioBO
 {
-    use UsuarioTrait, Uuid;
+    use UsuarioTrait;
+    use Uuid;
 
     private $prosseguir;
     private $usuario;
@@ -25,7 +26,7 @@ class UsuarioBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class UsuarioBO
         return UsuarioRepository::store($this->prepare($request));
     }
 
-    public function save($request, Usuario $usuario = null):? Usuario
+    public function save($request, Usuario $usuario = null): ?Usuario
     {
         $objeto = new \stdClass();
         $objeto->usuario = $usuario;
-        if ($usuario === null)
-        {
+        if ($usuario === null) {
             $objeto->usuario = UsuarioRepository::firstOrNew($request->get('id'));
         }
         return UsuarioRepository::save($this->prepare($request, $objeto));

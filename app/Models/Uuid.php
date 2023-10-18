@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 trait Uuid
@@ -20,4 +21,3 @@ trait Uuid
         return $class::findByUuid($uuid);
     }
 }
-?>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use App\Http\Requests\CustomRulesRequest;
@@ -10,7 +11,7 @@ class UsuarioRequest extends CustomRulesRequest
      *
      * @return Bool
      */
-    public function authorize(): Bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -18,7 +19,7 @@ class UsuarioRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateDefault(): Array
+    public function validateDefault(): array
     {
         return [
             // Your default validation
@@ -28,29 +29,27 @@ class UsuarioRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateToStore(): Array
+    public function validateToStore(): array
     {
         return [
             // 'name' => 'required|max:60',
         ];
-
     }
 
     /**
      * @return Array
      */
-    public function validateToSave(): Array
+    public function validateToSave(): array
     {
         return [
             // 'name' => 'required|max:60',
         ];
-
     }
 
     /**
      * @return Array
      */
-    public function validateToUpdate(): Array
+    public function validateToUpdate(): array
     {
         return [
             // 'name' => 'max:60',
@@ -60,7 +59,7 @@ class UsuarioRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateToDestroy(): Array
+    public function validateToDestroy(): array
     {
         return [
             // 'id' => 'required',
@@ -70,7 +69,7 @@ class UsuarioRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function messages(): Array
+    public function messages(): array
     {
         return [
             // 'id.required' => 'O id é obrigatório!',

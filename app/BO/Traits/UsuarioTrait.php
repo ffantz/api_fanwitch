@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
