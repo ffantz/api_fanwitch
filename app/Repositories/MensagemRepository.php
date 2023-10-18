@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Mensagem;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class MensagemRepository extends GenericRepository implements RepositoryInterfac
         return Mensagem::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new Mensagem)->getKeyName();
+        return (new Mensagem())->getKeyName();
     }
 }
-

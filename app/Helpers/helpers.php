@@ -17,3 +17,10 @@ if (!function_exists("getArrayWithoutTimestamps")) {
         return array_flip(array_except(array_flip($array), ['created_at', 'updated_at']));
     }
 }
+
+if (!function_exists("truemod")) {
+    function truemod($num, $mod)
+    {
+        return ($mod + ($num % $mod)) % $mod;
+    }
+}

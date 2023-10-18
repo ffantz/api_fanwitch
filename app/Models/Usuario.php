@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-class Usuario
+use Illuminate\Database\Eloquent\Model;
+
+class Usuario extends Model
 {
-    use Uuid;
+    use Uuid, Traits\Scope;
 
     protected $table = 'usuario';
-    protected $guarded = ['id'];
+    // protected $guarded = ['id'];
 
     /**
      * Attributes that are mass assignable.

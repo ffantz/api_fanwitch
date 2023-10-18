@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Amizade;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class AmizadeRepository extends GenericRepository implements RepositoryInterface
         return Amizade::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new Amizade)->getKeyName();
+        return (new Amizade())->getKeyName();
     }
 }
-

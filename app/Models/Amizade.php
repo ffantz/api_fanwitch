@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasCompositePrimaryKey;
 
-class Amizade
+class Amizade extends Model
 {
     use Uuid;
     use HasCompositePrimaryKey;

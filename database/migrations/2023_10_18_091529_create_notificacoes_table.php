@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('notificacoes', function (Blueprint $table) {
             $table->bigInteger('id')->autoIncrement()->unsigned();
+            $table->addUuid();
             $table->usuario();
             $table->string('titulo', 90);
             $table->text('texto');
-            $table->enum('lida', ['0', '1'])->default('0');
+            $table->enum('lida', [0, 1])->default(0);
             $table->timestamps();
         });
     }

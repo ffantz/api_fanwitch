@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\AmizadeTrait;
 use App\Models\Amizade;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class AmizadeBO
 {
-    use AmizadeTrait, Uuid;
+    use AmizadeTrait;
+    use Uuid;
 
     private $prosseguir;
     private $amizade;
@@ -25,7 +26,7 @@ class AmizadeBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class AmizadeBO
         return AmizadeRepository::store($this->prepare($request));
     }
 
-    public function save($request, Amizade $amizade = null):? Amizade
+    public function save($request, Amizade $amizade = null): ?Amizade
     {
         $objeto = new \stdClass();
         $objeto->amizade = $amizade;
-        if ($amizade === null)
-        {
+        if ($amizade === null) {
             $objeto->amizade = AmizadeRepository::firstOrNew($request->get('id'));
         }
         return AmizadeRepository::save($this->prepare($request, $objeto));

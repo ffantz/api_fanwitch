@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\MensagemTrait;
 use App\Models\Mensagem;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class MensagemBO
 {
-    use MensagemTrait, Uuid;
+    use MensagemTrait;
+    use Uuid;
 
     private $prosseguir;
     private $mensagem;
@@ -25,7 +26,7 @@ class MensagemBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class MensagemBO
         return MensagemRepository::store($this->prepare($request));
     }
 
-    public function save($request, Mensagem $mensagem = null):? Mensagem
+    public function save($request, Mensagem $mensagem = null): ?Mensagem
     {
         $objeto = new \stdClass();
         $objeto->mensagem = $mensagem;
-        if ($mensagem === null)
-        {
+        if ($mensagem === null) {
             $objeto->mensagem = MensagemRepository::firstOrNew($request->get('id'));
         }
         return MensagemRepository::save($this->prepare($request, $objeto));

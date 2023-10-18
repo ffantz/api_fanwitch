@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Canal;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class CanalRepository extends GenericRepository implements RepositoryInterface
         return Canal::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new Canal)->getKeyName();
+        return (new Canal())->getKeyName();
     }
 }
-

@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Models;
 
-class Notificacoes
+use Illuminate\Database\Eloquent\Model;
+
+class Notificacoes extends Model
 {
     use Uuid;
 

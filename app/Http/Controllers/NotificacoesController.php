@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -32,8 +33,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->initialize();
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao buscar";
         }
@@ -51,8 +51,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->index();
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao buscar";
         }
@@ -72,8 +71,7 @@ class NotificacoesController extends Controller
 
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->store($request);
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao salvar";
         }
@@ -93,8 +91,7 @@ class NotificacoesController extends Controller
 
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->save($request);
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao salvar";
         }
@@ -113,8 +110,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->show($notificacoes);
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao exibir";
         }
@@ -136,8 +132,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->update($request, $notificacoes);
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao editar";
         }
@@ -156,8 +151,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->destroy($notificacoes);
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao remover";
         }
@@ -170,8 +164,7 @@ class NotificacoesController extends Controller
         $notificacoesBO = new NotificacoesBO();
         $this->return = $notificacoesBO->downloadArquivoModelo();
 
-        if (!$this->return)
-        {
+        if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao baixar o arquivo";
             return collection(false, $this->code, $this->message);

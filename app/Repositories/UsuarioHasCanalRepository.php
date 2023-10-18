@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\UsuarioHasCanal;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class UsuarioHasCanalRepository extends GenericRepository implements RepositoryI
         return UsuarioHasCanal::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new UsuarioHasCanal)->getKeyName();
+        return (new UsuarioHasCanal())->getKeyName();
     }
 }
-

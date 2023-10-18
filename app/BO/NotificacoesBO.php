@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\NotificacoesTrait;
 use App\Models\Notificacoes;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class NotificacoesBO
 {
-    use NotificacoesTrait, Uuid;
+    use NotificacoesTrait;
+    use Uuid;
 
     private $prosseguir;
     private $notificacoes;
@@ -25,7 +26,7 @@ class NotificacoesBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class NotificacoesBO
         return NotificacoesRepository::store($this->prepare($request));
     }
 
-    public function save($request, Notificacoes $notificacoes = null):? Notificacoes
+    public function save($request, Notificacoes $notificacoes = null): ?Notificacoes
     {
         $objeto = new \stdClass();
         $objeto->notificacoes = $notificacoes;
-        if ($notificacoes === null)
-        {
+        if ($notificacoes === null) {
             $objeto->notificacoes = NotificacoesRepository::firstOrNew($request->get('id'));
         }
         return NotificacoesRepository::save($this->prepare($request, $objeto));

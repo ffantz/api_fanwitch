@@ -14,7 +14,7 @@ class HelperMigrate
         });
 
         Blueprint::macro('status', function () {
-            $this->enum('status', ['0', '1'])->default('0');
+            $this->enum('status', [0, 1])->default(0);
         });
 
         Blueprint::macro('addUuid', function ($after = null, $nullable = false) {

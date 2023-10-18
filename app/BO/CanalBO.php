@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\CanalTrait;
 use App\Models\Canal;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class CanalBO
 {
-    use CanalTrait, Uuid;
+    use CanalTrait;
+    use Uuid;
 
     private $prosseguir;
     private $canal;
@@ -25,7 +26,7 @@ class CanalBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class CanalBO
         return CanalRepository::store($this->prepare($request));
     }
 
-    public function save($request, Canal $canal = null):? Canal
+    public function save($request, Canal $canal = null): ?Canal
     {
         $objeto = new \stdClass();
         $objeto->canal = $canal;
-        if ($canal === null)
-        {
+        if ($canal === null) {
             $objeto->canal = CanalRepository::firstOrNew($request->get('id'));
         }
         return CanalRepository::save($this->prepare($request, $objeto));

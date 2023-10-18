@@ -1,4 +1,5 @@
 <?php
+
 namespace App\BO;
 
 use Illuminate\Http\Request;
@@ -9,13 +10,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\BO\Traits\UsuarioHasCanalTrait;
 use App\Models\UsuarioHasCanal;
 use App\Models\Uuid;
-
 use Illuminate\Support\Facades\Storage;
 use Log;
 
 class UsuarioHasCanalBO
 {
-    use UsuarioHasCanalTrait, Uuid;
+    use UsuarioHasCanalTrait;
+    use Uuid;
 
     private $prosseguir;
     private $usuarioHasCanal;
@@ -25,7 +26,7 @@ class UsuarioHasCanalBO
      *
      * @return Object
      */
-    public function initialize(): Object
+    public function initialize(): object
     {
         $retorno = new \stdClass();
 
@@ -83,12 +84,11 @@ class UsuarioHasCanalBO
         return UsuarioHasCanalRepository::store($this->prepare($request));
     }
 
-    public function save($request, UsuarioHasCanal $usuarioHasCanal = null):? UsuarioHasCanal
+    public function save($request, UsuarioHasCanal $usuarioHasCanal = null): ?UsuarioHasCanal
     {
         $objeto = new \stdClass();
         $objeto->usuarioHasCanal = $usuarioHasCanal;
-        if ($usuarioHasCanal === null)
-        {
+        if ($usuarioHasCanal === null) {
             $objeto->usuarioHasCanal = UsuarioHasCanalRepository::firstOrNew($request->get('id'));
         }
         return UsuarioHasCanalRepository::save($this->prepare($request, $objeto));

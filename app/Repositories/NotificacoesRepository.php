@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Notificacoes;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class NotificacoesRepository extends GenericRepository implements RepositoryInte
         return Notificacoes::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new Notificacoes)->getKeyName();
+        return (new Notificacoes())->getKeyName();
     }
 }
-

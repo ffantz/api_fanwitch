@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('mensagem', function (Blueprint $table) {
             $table->id();
+            $table->addUuid();
             $table->bigInteger('id_usuario_remetente')->unsigned();
             $table->bigInteger('id_usuario_destinatario')->unsigned();
             $table->text('mensagem');
-            $table->enum('lida', ['0', '1'])->default('0');
+            $table->enum('lida', [0, 1])->default(0);
             $table->timestamps();
         });
     }

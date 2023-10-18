@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('canal', function (Blueprint $table) {
             $table->bigInteger('id')->autoIncrement()->unsigned();
-            $table->usuario();
             $table->addUuid();
+            $table->usuario();
             $table->string('nome_canal', 75);
             $table->string('username', 45);
             $table->status();

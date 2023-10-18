@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Models;
 
-class Mensagem
+use Illuminate\Database\Eloquent\Model;
+
+class Mensagem extends Model
 {
     use Uuid;
 

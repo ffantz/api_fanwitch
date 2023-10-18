@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Models;
 
-class Canal
+use Illuminate\Database\Eloquent\Model;
+
+class Canal extends Model
 {
     use Uuid;
 
