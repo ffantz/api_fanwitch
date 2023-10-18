@@ -1,15 +1,14 @@
 <?php
-
 namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
 use App\Resources\Traits\PrepareTrait;
 
 /**
- * Usuario trait
+ * UsuarioHasCanal trait
  *
  */
-trait UsuarioTrait
+trait UsuarioHasCanalTrait
 {
     use PrepareTrait;
 
@@ -26,13 +25,12 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_canal']      = $objetoRequest->id_canal;
+        $arrayRetorno['id_usuario']    = $objetoRequest->id_usuario;
+        $arrayRetorno['moderador']     = $objetoRequest->moderador;
+        $arrayRetorno['administrador'] = $objetoRequest->administrador;
+        $arrayRetorno['inscrito']      = $objetoRequest->inscrito;
+        $arrayRetorno['recomendado']   = $objetoRequest->recomendado;
 
         return array_filter($arrayRetorno);
     }
@@ -42,13 +40,13 @@ trait UsuarioTrait
         $objetoRequest                   = $params['request'];
         $objetoClasse                    = $params['object'];
 
-        $usuario = $objetoClasse->usuario;
+        $usuarioHasCanal = $objetoClasse->usuarioHasCanal;
 
-        foreach (getArrayWithoutTimestamps($usuario->getTableColumns()) as $value) {
-            $usuario->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $usuario->$value;
+        foreach (getArrayWithoutTimestamps($usuarioHasCanal->getTableColumns()) as $value) {
+            $usuarioHasCanal->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $usuarioHasCanal->$value;
         }
 
-        return $usuario;
+        return $usuarioHasCanal;
     }
 
     /**
@@ -64,13 +62,12 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_canal']      = $objetoRequest->id_canal;
+        $arrayRetorno['id_usuario']    = $objetoRequest->id_usuario;
+        $arrayRetorno['moderador']     = $objetoRequest->moderador;
+        $arrayRetorno['administrador'] = $objetoRequest->administrador;
+        $arrayRetorno['inscrito']      = $objetoRequest->inscrito;
+        $arrayRetorno['recomendado']   = $objetoRequest->recomendado;
 
         return array_filter($arrayRetorno);
     }

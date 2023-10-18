@@ -10,3 +10,10 @@ if (! function_exists('collection')) {
         return response()->json($collection, $code);
     }
 }
+
+if (!function_exists("getArrayWithoutTimestamps")) {
+    function getArrayWithoutTimestamps($array)
+    {
+        return array_flip(array_except(array_flip($array), ['created_at', 'updated_at']));
+    }
+}

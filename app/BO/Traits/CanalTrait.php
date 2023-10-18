@@ -1,15 +1,14 @@
 <?php
-
 namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
 use App\Resources\Traits\PrepareTrait;
 
 /**
- * Usuario trait
+ * Canal trait
  *
  */
-trait UsuarioTrait
+trait CanalTrait
 {
     use PrepareTrait;
 
@@ -26,13 +25,12 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
+        $arrayRetorno['nome_canal'] = $objetoRequest->nome_canal;
+        $arrayRetorno['username']   = $objetoRequest->username;
+        $arrayRetorno['status']     = $objetoRequest->status;
+        $arrayRetorno['avatar']     = $objetoRequest->avatar;
+        $arrayRetorno['foto_capa']  = $objetoRequest->foto_capa;
 
         return array_filter($arrayRetorno);
     }
@@ -42,13 +40,13 @@ trait UsuarioTrait
         $objetoRequest                   = $params['request'];
         $objetoClasse                    = $params['object'];
 
-        $usuario = $objetoClasse->usuario;
+        $canal = $objetoClasse->canal;
 
-        foreach (getArrayWithoutTimestamps($usuario->getTableColumns()) as $value) {
-            $usuario->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $usuario->$value;
+        foreach (getArrayWithoutTimestamps($canal->getTableColumns()) as $value) {
+            $canal->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $canal->$value;
         }
 
-        return $usuario;
+        return $canal;
     }
 
     /**
@@ -64,13 +62,12 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
+        $arrayRetorno['nome_canal'] = $objetoRequest->nome_canal;
+        $arrayRetorno['username']   = $objetoRequest->username;
+        $arrayRetorno['status']     = $objetoRequest->status;
+        $arrayRetorno['avatar']     = $objetoRequest->avatar;
+        $arrayRetorno['foto_capa']  = $objetoRequest->foto_capa;
 
         return array_filter($arrayRetorno);
     }

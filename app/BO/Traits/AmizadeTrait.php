@@ -1,15 +1,14 @@
 <?php
-
 namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
 use App\Resources\Traits\PrepareTrait;
 
 /**
- * Usuario trait
+ * Amizade trait
  *
  */
-trait UsuarioTrait
+trait AmizadeTrait
 {
     use PrepareTrait;
 
@@ -26,13 +25,9 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario']            = $objetoRequest->id_usuario;
+        $arrayRetorno['id_usuario_adicionado'] = $objetoRequest->id_usuario_adicionado;
+        $arrayRetorno['status']                = $objetoRequest->status;
 
         return array_filter($arrayRetorno);
     }
@@ -42,13 +37,13 @@ trait UsuarioTrait
         $objetoRequest                   = $params['request'];
         $objetoClasse                    = $params['object'];
 
-        $usuario = $objetoClasse->usuario;
+        $amizade = $objetoClasse->amizade;
 
-        foreach (getArrayWithoutTimestamps($usuario->getTableColumns()) as $value) {
-            $usuario->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $usuario->$value;
+        foreach (getArrayWithoutTimestamps($amizade->getTableColumns()) as $value) {
+            $amizade->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $amizade->$value;
         }
 
-        return $usuario;
+        return $amizade;
     }
 
     /**
@@ -64,13 +59,9 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario']            = $objetoRequest->id_usuario;
+        $arrayRetorno['id_usuario_adicionado'] = $objetoRequest->id_usuario_adicionado;
+        $arrayRetorno['status']                = $objetoRequest->status;
 
         return array_filter($arrayRetorno);
     }

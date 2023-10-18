@@ -23,4 +23,13 @@ class Usuario
         "avatar",
         "status",
     ];
+
+    /**
+     * Attributes that are mass assignable.
+     *
+     * @var  array
+     */
+    protected $hidden = [
+        'password'
+    ];
 }

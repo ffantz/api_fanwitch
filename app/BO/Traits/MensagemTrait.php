@@ -1,15 +1,14 @@
 <?php
-
 namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
 use App\Resources\Traits\PrepareTrait;
 
 /**
- * Usuario trait
+ * Mensagem trait
  *
  */
-trait UsuarioTrait
+trait MensagemTrait
 {
     use PrepareTrait;
 
@@ -26,13 +25,10 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario_remetente']    = $objetoRequest->id_usuario_remetente;
+        $arrayRetorno['id_usuario_destinatario'] = $objetoRequest->id_usuario_destinatario;
+        $arrayRetorno['mensagem']                = $objetoRequest->mensagem;
+        $arrayRetorno['lida']                    = $objetoRequest->lida;
 
         return array_filter($arrayRetorno);
     }
@@ -42,13 +38,13 @@ trait UsuarioTrait
         $objetoRequest                   = $params['request'];
         $objetoClasse                    = $params['object'];
 
-        $usuario = $objetoClasse->usuario;
+        $mensagem = $objetoClasse->mensagem;
 
-        foreach (getArrayWithoutTimestamps($usuario->getTableColumns()) as $value) {
-            $usuario->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $usuario->$value;
+        foreach (getArrayWithoutTimestamps($mensagem->getTableColumns()) as $value) {
+            $mensagem->$value        = $objetoRequest->has($value) ? $objetoRequest->$value : $mensagem->$value;
         }
 
-        return $usuario;
+        return $mensagem;
     }
 
     /**
@@ -64,13 +60,10 @@ trait UsuarioTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
-        $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
-        $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
-        $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['id_usuario_remetente']    = $objetoRequest->id_usuario_remetente;
+        $arrayRetorno['id_usuario_destinatario'] = $objetoRequest->id_usuario_destinatario;
+        $arrayRetorno['mensagem']                = $objetoRequest->mensagem;
+        $arrayRetorno['lida']                    = $objetoRequest->lida;
 
         return array_filter($arrayRetorno);
     }
