@@ -21,7 +21,7 @@ class CanalTableSeeder extends Seeder
         $usuarios = Usuario::get();
 
         foreach ($usuarios as $key => $usuario) {
-            if (\truemod($key, 2) == 0) {
+            if (\truemod($key, 3) == 0) {
                 $faker = \Faker\Factory::create();
                 $faker->addProvider(new \Faker\Provider\Internet($faker));
 
@@ -31,9 +31,9 @@ class CanalTableSeeder extends Seeder
                     "id_usuario" => $usuario->id,
                     "nome_canal" => $faker->name(),
                     "username" => $faker->userName(),
-                    "status" => (string) \truemod($i, 2),
-                    "email_verified_at" => now(),
-                    "remember_token" => Str::random(10),
+                    "status" => (string) \truemod($key, 2),
+                    "avatar" => (\truemod($key, 2) ? "no_photo" : "profile") . ".png",
+                    "foto_capa" => "capa" . (\truemod($key, 2) ? "1" : "2") . ".jpg",
                 ]);
             }
         }

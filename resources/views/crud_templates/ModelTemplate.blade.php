@@ -1,5 +1,6 @@
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 /**
  * If this model has a composite primary key, use the trait HasCompositePrimaryKey, uncommenting the following lines:
@@ -27,4 +28,15 @@ class {{$className}} extends Model
     protected $fillable = [
         // "name",
     ];
+
+    /**
+    * Prepare a date for array / JSON serialization.
+    *
+    * @param  \DateTimeInterface  $date
+    * @return string
+    */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }

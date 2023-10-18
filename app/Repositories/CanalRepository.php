@@ -24,4 +24,9 @@ class CanalRepository extends GenericRepository implements RepositoryInterface
     {
         return (new Canal())->getKeyName();
     }
+
+    public static function initialize($with = []): ?Collection
+    {
+        return Canal::with($with)->orderBy('status', 'DESC')->get();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Canal extends Model
@@ -24,4 +25,21 @@ class Canal extends Model
         "avatar",
         "foto_capa",
     ];
+
+    public function usuario()
+    {
+        return $this->hasOne(Usuario::class, 'id', 'id_usuario');
+    }
+
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }

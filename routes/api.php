@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\{AuthController,CanalController};
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('initialize', function ($msg) {
-    return collection(null, 401, "Acesso não permitido." . $msg);
-});
+Route::get('initialize', [CanalController::class, 'initialize']);
 
 Route::post('/login', [AuthController::class, 'login']);
 

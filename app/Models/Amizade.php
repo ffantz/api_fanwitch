@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 use App\Models\Traits\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Model;
 
 class Amizade extends Model
 {
@@ -24,4 +25,15 @@ class Amizade extends Model
         "id_usuario_adicionado",
         "status",
     ];
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }

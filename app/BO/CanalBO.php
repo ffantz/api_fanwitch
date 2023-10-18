@@ -28,9 +28,7 @@ class CanalBO
      */
     public function initialize(): object
     {
-        $retorno = new \stdClass();
-
-        return $retorno;
+        return CanalRepository::initialize([ 'usuario' ]);
     }
 
     /**
