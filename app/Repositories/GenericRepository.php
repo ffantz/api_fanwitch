@@ -3,10 +3,9 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use \App\Models\BaseModel;
+use App\Models\BaseModel;
 
 /**
  * GenericRepository class
@@ -21,7 +20,7 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    protected static function getCalledClass() : string
+    protected static function getCalledClass(): string
     {
         return \get_called_class()::getClass();
     }
@@ -32,7 +31,7 @@ abstract class GenericRepository
      * @return string
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    protected static function getClassPrimaryKey() : string
+    protected static function getClassPrimaryKey(): string
     {
         return \get_called_class()::getPrimaryKeyName();
     }
@@ -44,7 +43,7 @@ abstract class GenericRepository
      * @return LengthAwarePaginator|null
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function index() : ? LengthAwarePaginator
+    public static function index(): ?LengthAwarePaginator
     {
         return self::getCalledClass()::paginate();
     }
@@ -55,7 +54,7 @@ abstract class GenericRepository
      * @return Collection|null
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function initialize($with = []) : ? Collection
+    public static function initialize($with = []): ?Collection
     {
         $queryBuild = self::getCalledClass();
         return \count($with) ? self::getCalledClass()::with($with)->get() : self::getCalledClass()::get();
@@ -68,7 +67,7 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel|null
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function findById(int $id) : ? BaseModel
+    public static function findById(int $id): ?BaseModel
     {
         return self::getCalledClass()::where(self::getClassPrimaryKey(), $id)->first();
     }
@@ -80,7 +79,7 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function findByUuid(string $uuid) : ? BaseModel
+    public static function findByUuid(string $uuid): ?BaseModel
     {
         return self::getCalledClass()::whereUuid($uuid)->first();
     }
@@ -99,10 +98,10 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function firstOrNew(? int $id) : BaseModel
+    public static function firstOrNew(?int $id): BaseModel
     {
         $class = self::getCalledClass();
-        return !is_null($id) && $id > 0 ? $class::firstOrNew([self::getClassPrimaryKey() => $id]) : new $class;
+        return !is_null($id) && $id > 0 ? $class::firstOrNew([self::getClassPrimaryKey() => $id]) : new $class();
     }
 
     /**
@@ -114,10 +113,10 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function firstOrNewHasComposite(array $arrayData) : BaseModel
+    public static function firstOrNewHasComposite(array $arrayData): BaseModel
     {
         $class = self::getCalledClass();
-        return \count($arrayData) > 0 ? $class::firstOrNew($arrayData) : new $class;
+        return \count($arrayData) > 0 ? $class::firstOrNew($arrayData) : new $class();
     }
 
    /**
@@ -127,7 +126,7 @@ abstract class GenericRepository
     * @return \App\Models\BaseModel
     * @author Flávio Caetano <flavioluzio22@gmail.com>
     */
-    public static function store(array $arrayData) : BaseModel
+    public static function store(array $arrayData): BaseModel
     {
         return self::getCalledClass()::create($arrayData);
     }
@@ -140,7 +139,7 @@ abstract class GenericRepository
      * @return \App\Models\BaseModel|null
      * @author Flávio Caetano <flavioluzio22@gmail.com>
      */
-    public static function save(BaseModel $calledClass) : ? BaseModel
+    public static function save(BaseModel $calledClass): ?BaseModel
     {
         return $calledClass->save() ? $calledClass : null;
     }
