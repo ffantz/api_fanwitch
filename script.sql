@@ -1,0 +1,20 @@
+CREATE DATABASE fanwitch;
+
+CREATE USER 'usuario_api_fanwitch'@'%' IDENTIFIED BY 'c.XQP@)GWD}MMF^!EFI$thUmNbZ8}*l*';
+GRANT Alter ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Create ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Create view ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Delete ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Drop ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Index ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Insert ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT References ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Select ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Show view ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Trigger ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Update ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Alter routine ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Create routine ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Create temporary tables ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Execute ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
+GRANT Lock tables ON fanwitch.* TO 'usuario_api_fanwitch'@'%';
