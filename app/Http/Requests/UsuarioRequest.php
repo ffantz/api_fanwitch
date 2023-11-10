@@ -29,40 +29,12 @@ class UsuarioRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateToStore(): array
+    public function validateToCadastrar(): array
     {
         return [
-            // 'name' => 'required|max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToSave(): array
-    {
-        return [
-            // 'name' => 'required|max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToUpdate(): array
-    {
-        return [
-            // 'name' => 'max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToDestroy(): array
-    {
-        return [
-            // 'id' => 'required',
+            'username' => 'required_without:email|unique:usuario,username|max:35',
+            'email' => 'required_without:username|unique:usuario,email|max:100',
+            'password' => 'min:6|max:100',
         ];
     }
 
@@ -72,7 +44,16 @@ class UsuarioRequest extends CustomRulesRequest
     public function messages(): array
     {
         return [
-            // 'id.required' => 'O id é obrigatório!',
+            'username.max' => 'O nome de usuário deve ter no máximo 35 caracteres!',
+            'username.unique' => 'O nome de usuário já está cadastrado!',
+            'username.required_without' => 'Informe um email ou nome de usuário!',
+
+            'email.max' => 'O email deve ter no máximo 100 caracteres!',
+            'email.unique' => 'O email já está cadastrado!',
+            'email.required_without' => 'Informe um email ou nome de usuário!',
+
+            'password.max' => 'A senha deve ter no máximo 100 caracteres!',
+            'password.min' => 'A senha deve ter no mínimo 6 caracteres!',
         ];
     }
 

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use HasApiTokens;
     use Uuid;
     use Traits\Scope;
 
@@ -34,7 +37,9 @@ class Usuario extends Model
      * @var  array
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
+        'email-verified_at'
     ];
 
     /**

@@ -40,7 +40,7 @@ class UsuarioTableSeeder extends Seeder
                 "nome" => $nome,
                 "email" => $email,
                 "username" => $faker->userName(),
-                "password" => bcrypt("123456"),
+                "password" => bcrypt(Str::random(15)),
                 "status" => (string) \truemod($i, 2),
                 "email_verified_at" => \truemod($i, 2) == 0 ? null : now(),
                 "remember_token" => Str::random(10),

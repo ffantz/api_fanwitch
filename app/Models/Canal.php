@@ -31,6 +31,10 @@ class Canal extends Model
         return $this->hasOne(Usuario::class, 'id', 'id_usuario');
     }
 
+    public function seguidores()
+    {
+        return $this->hasMany(UsuarioHasCanal::class, 'id_canal', 'id');
+    }
 
     /**
      * Prepare a date for array / JSON serialization.

@@ -28,7 +28,9 @@ class CanalBO
      */
     public function initialize(): object
     {
-        return CanalRepository::initialize([ 'usuario' ]);
+        return CanalRepository::initialize([ 'usuario', 'seguidores' => function ($query) {
+            $query->with("usuario");
+        } ]);
     }
 
     /**

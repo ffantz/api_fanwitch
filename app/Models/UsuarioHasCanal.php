@@ -8,7 +8,6 @@ use App\Models\Traits\HasCompositePrimaryKey;
 
 class UsuarioHasCanal extends Model
 {
-    use Uuid;
     use HasCompositePrimaryKey;
 
     protected $table = 'usuario_has_canal';
@@ -28,6 +27,15 @@ class UsuarioHasCanal extends Model
         "inscrito",
         "recomendado",
     ];
+
+    public function usuario()
+    {
+        return $this->hasOne(Usuario::class, 'id', 'id_usuario');
+    }
+    public function canal()
+    {
+        return $this->hasOne(Canal::class, 'id', 'id_canal');
+    }
 
     /**
      * Prepare a date for array / JSON serialization.
