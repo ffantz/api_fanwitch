@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +12,7 @@ class CustomRulesRequest extends FormRequest
      *
      * @return  Array
      */
-    public function rules(): Array
+    public function rules(): array
     {
         $method = "validateTo" . Str::ucfirst($this->route()->getActionMethod());
         return $this->$method();
