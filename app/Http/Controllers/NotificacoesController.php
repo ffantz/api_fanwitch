@@ -117,30 +117,7 @@ class NotificacoesController extends Controller
 
         return collection($this->return, $this->code, $this->message);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\NotificacoesRequest  $request
-     * @param  \App\Models\Notificacoes  $notificacoes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(NotificacoesRequest $request, Notificacoes $notificacoes)
-    {
-        $request->merge([ 'id_usuario' => Auth::user()->id ]);
-        $this->code = config('httpstatus.success.created');
-
-        $notificacoesBO = new NotificacoesBO();
-        $this->return = $notificacoesBO->update($request, $notificacoes);
-
-        if (!$this->return) {
-            $this->code    = config('httpstatus.server_error.internal_server_error');
-            $this->message = "Erro ao editar";
-        }
-
-        return collection($this->return, $this->code, $this->message);
-    }
-
+/** * Update the specified resource in storage. * * @param  \App\Http\Requests\NotificacoesRequest  $request * @param  \App\Models\Notificacoes  $notificacoes * @return \Illuminate\Http\Response */ public function update(NotificacoesRequest $request, Notificacoes $notificacoes) { $request->merge([ 'id_usuario' => Auth::user()->id ]); $this->code = config('httpstatus.success.created'); $notificacoesBO = new NotificacoesBO(); $this->return = $notificacoesBO->update($request, $notificacoes); if (!$this->return) { $this->code    = config('httpstatus.server_error.internal_server_error'); $this->message = "Erro ao editar"; } return collection($this->return, $this->code, $this->message); }
     /**
      * Remove the specified resource from storage.
      *
