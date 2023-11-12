@@ -30,10 +30,24 @@ class AuthController extends Controller
         }
         $user = Usuario::where('email', $request['email'])->orWhere('username', $request['username'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
+        \Auth::login($user);
 
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'Bearer',
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function logout(Request $request): JsonResponse
+    {
+        \Auth::user()->tokens()->delete();
+
+        return response()->json([
+            'success' => true,
         ]);
     }
 

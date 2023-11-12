@@ -5,7 +5,7 @@ namespace App\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Notificacoes extends Model
+class Notificacoes extends BaseModel
 {
     use Uuid;
 

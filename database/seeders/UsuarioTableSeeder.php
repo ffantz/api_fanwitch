@@ -24,12 +24,11 @@ class UsuarioTableSeeder extends Seeder
             "username" => "ffantz",
             "password" => bcrypt("123456"),
             "status" => '0',
-            "email_verified_at" => now(),
             "remember_token" => Str::random(10),
         ]);
 
         for ($i = 0; $i < 150; $i++) {
-            $faker = \Faker\Factory::create();
+            $faker = \Faker\Factory::create("pt_BR");
             $faker->addProvider(new \Faker\Provider\Internet($faker));
             $email = $faker->email();
             $nome = \truemod($i, 2) == 0 ? $faker->name() : null;

@@ -5,7 +5,7 @@ namespace App\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Mensagem extends Model
+class Mensagem extends BaseModel
 {
     use Uuid;
 

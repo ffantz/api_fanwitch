@@ -81,7 +81,9 @@ class UsuarioBO
      */
     public function store($request): Usuario
     {
-        return UsuarioRepository::store($this->prepare($request));
+        $usuario = UsuarioRepository::store($this->prepare($request));
+        (new NotificacoesBO())->notificacaoBoasVindas($usuario);
+        return $usuario;
     }
 
     public function save($request, Usuario $usuario = null): ?Usuario
@@ -131,5 +133,17 @@ class UsuarioBO
     public function downloadArquivoModelo()
     {
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
+    }
+
+    public function dadosUsuario() {
+        $usuario = UsuarioRepository::dadosUsuario();
+
+        return $usuario;
+    }
+
+    public function atualizarInformacoes() {
+        $usuario = UsuarioRepository::dadosUsuario();
+
+        return $usuario;
     }
 }

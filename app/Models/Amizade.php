@@ -6,7 +6,7 @@ use DateTimeInterface;
 use App\Models\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
-class Amizade extends Model
+class Amizade extends BaseModel
 {
     use Uuid;
     use HasCompositePrimaryKey;

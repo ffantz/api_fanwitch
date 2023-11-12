@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 // use App\Models\Traits\HasCompositePrimaryKey;
 
-class {{$className}} extends Model
+class {{$className}} extends BaseModel
 {
     use Uuid;
     // use HasCompositePrimaryKey;

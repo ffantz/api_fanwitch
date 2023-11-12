@@ -29,40 +29,10 @@ class UsuarioHasCanalRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateToStore(): array
+    public function validateToAcaoCanal(): array
     {
         return [
-            // 'name' => 'required|max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToSave(): array
-    {
-        return [
-            // 'name' => 'required|max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToUpdate(): array
-    {
-        return [
-            // 'name' => 'max:60',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToDestroy(): array
-    {
-        return [
-            // 'id' => 'required',
+            'acao' => 'in:SEGUIR,PARAR_SEGUIR,INSCREVER,DESINSCREVER,MODERADOR,REMOVER_MODERADOR,ADMINISTRADOR,REMOVER_ADMINISTRADOR,RECOMENDADO,REMOVER_COMENDADO'
         ];
     }
 
@@ -72,7 +42,7 @@ class UsuarioHasCanalRequest extends CustomRulesRequest
     public function messages(): array
     {
         return [
-            // 'id.required' => 'O id é obrigatório!',
+            'acao.in' => 'Ação inválida',
         ];
     }
 

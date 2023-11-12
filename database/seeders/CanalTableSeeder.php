@@ -22,7 +22,7 @@ class CanalTableSeeder extends Seeder
 
         foreach ($usuarios as $key => $usuario) {
             if (\truemod($key, 3) == 0) {
-                $faker = \Faker\Factory::create();
+                $faker = \Faker\Factory::create("pt_BR");
                 $faker->addProvider(new \Faker\Provider\Internet($faker));
 
                 Canal::firstOrCreate([

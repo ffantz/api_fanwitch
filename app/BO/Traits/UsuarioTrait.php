@@ -4,6 +4,7 @@ namespace App\BO\Traits;
 
 use Illuminate\Http\Request;
 use App\Resources\Traits\PrepareTrait;
+use Illuminate\Support\Str;
 
 /**
  * Usuario trait
@@ -31,8 +32,10 @@ trait UsuarioTrait
         $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
+        $arrayRetorno['password']          = $objetoRequest->password;
         $arrayRetorno['avatar']            = $objetoRequest->avatar;
         $arrayRetorno['status']            = $objetoRequest->status;
+        $arrayRetorno['remember_token']    = Str::random(10);
 
         return array_filter($arrayRetorno);
     }
@@ -69,6 +72,7 @@ trait UsuarioTrait
         $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
+        $arrayRetorno['password']          = $objetoRequest->password;
         $arrayRetorno['avatar']            = $objetoRequest->avatar;
         $arrayRetorno['status']            = $objetoRequest->status;
 

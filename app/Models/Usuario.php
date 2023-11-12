@@ -27,6 +27,7 @@ class Usuario extends Authenticatable
         "email",
         "data_nascimento",
         "email_verified_at",
+        "password",
         "avatar",
         "status",
     ];
@@ -41,6 +42,16 @@ class Usuario extends Authenticatable
         'remember_token',
         'email-verified_at'
     ];
+
+    public function canal()
+    {
+        return $this->belongsTo(Canal::class, 'id_usuario');
+    }
+
+    public function seguindo()
+    {
+        return $this->belongsToMany(Canal::class, 'usuario_has_canal', 'id_usuario', 'id_canal')->withPivot([ 'moderador', 'administrador', 'inscrito', 'recomendado', ]);
+    }
 
     /**
      * Prepare a date for array / JSON serialization.

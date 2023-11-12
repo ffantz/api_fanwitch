@@ -132,4 +132,14 @@ class NotificacoesBO
     {
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
     }
+
+    public function notificacaoBoasVindas($usuario)
+    {
+        return $this->store(new Request([
+            'id_usuario' => $usuario->id,
+            'titulo' => 'Seja bem vindo(a)!',
+            'texto' => 'Esta é uma notificação inicial. Seja respeitoso(a) com os demais e bom divertimento!',
+            'lida' => '0',
+        ]));
+    }
 }

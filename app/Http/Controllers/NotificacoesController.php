@@ -127,6 +127,8 @@ class NotificacoesController extends Controller
      */
     public function update(NotificacoesRequest $request, Notificacoes $notificacoes)
     {
+        dd($request, $notificacoes);
+        $request->merge([ 'id_usuario' => Auth::user()->id ]);
         $this->code = config('httpstatus.success.created');
 
         $notificacoesBO = new NotificacoesBO();

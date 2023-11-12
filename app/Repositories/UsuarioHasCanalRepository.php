@@ -24,4 +24,11 @@ class UsuarioHasCanalRepository extends GenericRepository implements RepositoryI
     {
         return (new UsuarioHasCanal())->getKeyName();
     }
+
+    public static function updateOrCreate($arrayDados) {
+        return UsuarioHasCanal::updateOrCreate([
+            'id_canal' => $arrayDados['id_canal'],
+            'id_usuario' => $arrayDados['id_usuario'],
+        ], $arrayDados);
+    }
 }

@@ -132,4 +132,15 @@ class UsuarioHasCanalBO
     {
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
     }
+
+    public function updateOrCreate($request)
+    {
+        $request->merge([ 'id_usuario' => \Auth::user()->id ]);
+        $usuarioHasCanal = UsuarioHasCanal::whereIdUsuario($request->id_usuario)->whereIdCanal($request->id_canal)->first();
+        if ($request->acao == 'PARAR_SEGUIR') {
+            return $usuarioHasCanal ? UsuarioHasCanalRepository::destroy($usuarioHasCanal) : true;
+        }
+
+        return UsuarioHasCanalRepository::updateOrCreate($this->prepare($request));
+    }
 }

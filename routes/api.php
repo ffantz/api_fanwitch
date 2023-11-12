@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController,CanalController,UsuarioController};
+use App\Http\Controllers\{AuthController,CanalController,NotificacoesController,UsuarioController,UsuarioHasCanalController};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,18 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/cadastrar', [UsuarioController::class, 'cadastrar']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () {
+    Route::get('dados-usuario', [UsuarioController::class, 'dadosUsuario']);
+    Route::post('atualizar-informacoes', [UsuarioController::class, 'atualizarInformacoes']);
+    Route::post('validar-email', [UsuarioController::class, 'validarEmail']);
+
+    Route::post('acao-canal', [UsuarioHasCanalController::class, 'acaoCanal']);
+
+    Route::resource('notificacoes', NotificacoesController::class)->parameters([
+        'notificacoes' => 'notificacoes:uuid',
+    ]);
+
+    Route::get('initialize-usuario', [CanalController::class, 'initialize']);
+
+    Route::get('logout', [AuthController::class, 'logout']);
 });

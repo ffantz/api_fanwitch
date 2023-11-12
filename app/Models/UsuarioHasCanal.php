@@ -6,7 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasCompositePrimaryKey;
 
-class UsuarioHasCanal extends Model
+class UsuarioHasCanal extends BaseModel
 {
     use HasCompositePrimaryKey;
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Canal extends Model
+class Canal extends BaseModel
 {
     use Uuid;
 

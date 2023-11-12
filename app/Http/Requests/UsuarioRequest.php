@@ -32,9 +32,31 @@ class UsuarioRequest extends CustomRulesRequest
     public function validateToCadastrar(): array
     {
         return [
-            'username' => 'required_without:email|unique:usuario,username|max:35',
-            'email' => 'required_without:username|unique:usuario,email|max:100',
+            'username' => 'required:email|unique:usuario,username|max:35',
+            'email' => 'required:username|unique:usuario,email|max:100',
             'password' => 'min:6|max:100',
+        ];
+    }
+
+    /**
+     * @return Array
+     */
+    public function validateToAtualizarInformacoes(): array
+    {
+        return [
+            'email' => 'unique:usuario,email|max:100',
+            'data_nascimento' => 'date',
+            'nome' => 'max:70',
+        ];
+    }
+
+    /**
+     * @return Array
+     */
+    public function validateToValidarEmail(): array
+    {
+        return [
+            'codigo' => 'required|max:6|min:6',
         ];
     }
 
@@ -46,14 +68,19 @@ class UsuarioRequest extends CustomRulesRequest
         return [
             'username.max' => 'O nome de usuário deve ter no máximo 35 caracteres!',
             'username.unique' => 'O nome de usuário já está cadastrado!',
-            'username.required_without' => 'Informe um email ou nome de usuário!',
 
             'email.max' => 'O email deve ter no máximo 100 caracteres!',
             'email.unique' => 'O email já está cadastrado!',
-            'email.required_without' => 'Informe um email ou nome de usuário!',
 
             'password.max' => 'A senha deve ter no máximo 100 caracteres!',
             'password.min' => 'A senha deve ter no mínimo 6 caracteres!',
+
+            'data_nascimento.date' => 'A data de nascimento deve ser válida!',
+
+            'nome.max' => 'O nome deve ter no máximo 70 caracteres!',
+
+            'codigo.max' => 'O codigo de validação deve ter no máximo 6 caracteres!',
+            'codigo.min' => 'O codigo de validação deve ter no mínimo 6 caracteres!',
         ];
     }
 
