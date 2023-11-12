@@ -135,13 +135,15 @@ class UsuarioBO
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
     }
 
-    public function dadosUsuario() {
+    public function dadosUsuario()
+    {
         $usuario = UsuarioRepository::dadosUsuario();
 
         return $usuario;
     }
 
-    public function atualizarInformacoes() {
+    public function atualizarInformacoes()
+    {
         $usuario = UsuarioRepository::dadosUsuario();
 
         return $usuario;

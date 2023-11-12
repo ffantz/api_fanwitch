@@ -85,28 +85,28 @@ trait UsuarioHasCanalTrait
         switch ($objetoRequest->acao) {
             case 'MODERADOR':
                 $arrayRetorno['moderador'] = '1';
-            break;
+                break;
             case 'ADMINISTRADOR':
                 $arrayRetorno['administrador'] = '1';
-            break;
+                break;
             case 'INSCREVER':
                 $arrayRetorno['inscrito'] = '1';
-            break;
+                break;
             case 'RECOMENDADO':
                 $arrayRetorno['recomendado'] = '1';
-            break;
+                break;
             case 'REMOVER_MODERADOR':
                 $arrayRetorno['moderador'] = '0';
-            break;
+                break;
             case 'REMOVER_ADMINISTRADOR':
                 $arrayRetorno['administrador'] = '0';
-            break;
+                break;
             case 'DESINSCREVER':
                 $arrayRetorno['inscrito'] = '0';
-            break;
+                break;
             case 'REMOVER_RECOMENDADO':
                 $arrayRetorno['recomendado'] = '0';
-            break;
+                break;
         }
 
         return $arrayRetorno;
