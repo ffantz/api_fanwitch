@@ -25,8 +25,7 @@ class AuthController extends Controller
      */
     public function login(Request $request): JsonResponse
     {
-        try
-        {
+        try {
             $user = Usuario::where('email', $request['email'])->orWhere('username', $request['username'])->firstOrFail();
             if ($user) {
                 if (!$request->has('email')) {
@@ -47,9 +46,7 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Credenciais incorretas'
             ], 401);
-        }
-        catch(ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'O usuário ou email não está cadastrado'
             ], 401);
