@@ -19,22 +19,24 @@ class UsuarioHasCanalTableSeeder extends Seeder
      */
     public function run()
     {
-        $usuarios = Usuario::get();
+        $usuarios = Usuario::get()->shuffle();
         $canais = Canal::get();
 
         foreach ($canais as $canal) {
-            foreach ($usuarios as $key => $usuario) {
-                if (\truemod($key, 3) == 0 && $usuario->id != $canal->id_usuario) {
+            $qtdSeguidores = rand(10, count($usuarios) - 1);
+            for ($i = 0; $i < $qtdSeguidores; $i++) {
+                $usuario = $usuarios[$i];
+                if ($usuario->id != $canal->id_usuario) {
                     UsuarioHasCanal::firstOrCreate([
                         "id_canal" => $canal->id,
                         "id_usuario" => $usuario->id,
                     ],[
                         "id_canal" => $canal->id,
                         "id_usuario" => $usuario->id,
-                        "moderador" => (\truemod($key, 7) ? "0" : "1"),
-                        "administrador" => (\truemod($key, 2) ? "0" : "1"),
-                        "inscrito" => (\truemod($key, 2) ? "0" : "1"),
-                        "recomendado" => (\truemod($key, 4) ? "0" : "1"),
+                        "moderador" => (\truemod($i, 7) ? "0" : "1"),
+                        "administrador" => (\truemod($i, 2) ? "0" : "1"),
+                        "inscrito" => (\truemod($i, 2) ? "0" : "1"),
+                        "recomendado" => (\truemod($i, 4) ? "0" : "1"),
                     ]);
                 }
             }

@@ -17,11 +17,23 @@ class UsuarioTableSeeder extends Seeder
      */
     public function run()
     {
-        Usuario::firstOrCreate([
+        Usuario::updateOrCreate([
             "email" => "flavioluzio22@gmail.com",
         ],[
             "email" => "flavioluzio22@gmail.com",
             "username" => "ffantz",
+            "password" => bcrypt("123456"),
+            "status" => '0',
+            "remember_token" => Str::random(10),
+        ]);
+
+        Usuario::updateOrCreate([
+            "email" => "gbresende@gmail.com",
+        ],[
+            "email" => "gbresende@gmail.com",
+            "username" => "gbresende",
+            "nome" => "Gabriel Resende",
+            "data_nascimento" => "2001-03-07",
             "password" => bcrypt("123456"),
             "status" => '0',
             "remember_token" => Str::random(10),

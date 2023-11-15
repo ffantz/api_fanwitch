@@ -32,7 +32,7 @@ trait UsuarioTrait
         $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['password']          = $objetoRequest->password;
+        $arrayRetorno['password']          = bcrypt($objetoRequest->password);
         $arrayRetorno['avatar']            = $objetoRequest->avatar;
         $arrayRetorno['status']            = $objetoRequest->status;
         $arrayRetorno['remember_token']    = Str::random(10);
@@ -72,7 +72,7 @@ trait UsuarioTrait
         $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['password']          = $objetoRequest->password;
+        $arrayRetorno['password']          = bcrypt($objetoRequest->password);
         $arrayRetorno['avatar']            = $objetoRequest->avatar;
         $arrayRetorno['status']            = $objetoRequest->status;
 

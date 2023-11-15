@@ -30,7 +30,10 @@ class CanalBO
     {
         return CanalRepository::initialize([ 'usuario', 'seguidores' => function ($query) {
             $query->with("usuario");
-        } ]);
+        }])->map(function($canal) {
+            $canal->recomendacoes = count($canal->seguidores->where("recomendado", 1));
+            return $canal;
+        });
     }
 
     /**

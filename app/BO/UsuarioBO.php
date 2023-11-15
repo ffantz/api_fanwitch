@@ -141,11 +141,4 @@ class UsuarioBO
 
         return $usuario;
     }
-
-    public function atualizarInformacoes()
-    {
-        $usuario = UsuarioRepository::dadosUsuario();
-
-        return $usuario;
-    }
 }

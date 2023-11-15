@@ -48,6 +48,11 @@ class Usuario extends Authenticatable
         return $this->belongsTo(Canal::class, 'id_usuario');
     }
 
+    public function notificacoes()
+    {
+        return $this->hasMany(Notificacoes::class, 'id_usuario');
+    }
+
     public function seguindo()
     {
         return $this->belongsToMany(Canal::class, 'usuario_has_canal', 'id_usuario', 'id_canal')->withPivot([ 'moderador', 'administrador', 'inscrito', 'recomendado', ]);
