@@ -10,7 +10,7 @@ class Notificacoes extends BaseModel
     use Uuid;
 
     protected $table = 'notificacoes';
-    protected $guarded = ['id'];
+    // protected $guarded = ['id'];
 
     /**
      * Attributes that are mass assignable.

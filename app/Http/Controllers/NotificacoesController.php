@@ -125,13 +125,13 @@ class NotificacoesController extends Controller
      * @param  \App\Models\Notificacoes  $notificacoes
      * @return \Illuminate\Http\Response
      */
-    public function update(NotificacoesRequest $request, Notificacoes $notificacoes)
+    public function update(NotificacoesRequest $request, $uuid)
     {
-        $request->merge([ 'id_usuario' => Auth::user()->id ]);
+        $notificacao = Notificacoes::where('uuid', $uuid)->first();
         $this->code = config('httpstatus.success.created');
 
         $notificacoesBO = new NotificacoesBO();
-        $this->return = $notificacoesBO->update($request, $notificacoes);
+        $this->return = $notificacoesBO->update($request, $notificacao);
 
         if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');

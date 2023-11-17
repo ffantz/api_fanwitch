@@ -32,6 +32,8 @@ class CanalBO
             $query->with("usuario");
         }])->map(function ($canal) {
             $canal->recomendacoes = count($canal->seguidores->where("recomendado", 1));
+            $canal->inscricoes = count($canal->seguidores->where("inscrito", 1));
+            $canal->seguido = count($canal->seguidores);
             return $canal;
         });
     }

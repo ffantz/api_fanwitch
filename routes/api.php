@@ -28,9 +28,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
 
     Route::post('acao-canal', [UsuarioHasCanalController::class, 'acaoCanal']);
 
-    Route::resource('notificacoes', NotificacoesController::class)->parameters([
-        'notificacoes' => 'notificacoes:uuid',
-    ]);
+    Route::resource('notificacoes', NotificacoesController::class);
 
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
 
