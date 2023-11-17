@@ -28,7 +28,7 @@ class UsuarioRepository
     public static function dadosUsuario(): Usuario
     {
         return Usuario::whereId(\Auth::user()->id)
-            ->with([ 'canal', 'seguindo', 'notificacoes' => function($query) {
+            ->with([ 'canal', 'seguindo', 'notificacoes' => function ($query) {
                 $query->orderBy('notificacoes.created_at', 'DESC');
             } ])
             ->first();
