@@ -60,6 +60,24 @@ class CanalController extends Controller
     }
 
     /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function dadosCanal()
+    {
+        $canalBO = new CanalBO();
+        $this->return = $canalBO->dadosCanal();
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
      * Displays a resource's list
      *
      * @return \Illuminate\Http\Response

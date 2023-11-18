@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
     Route::resource('notificacoes', NotificacoesController::class);
 
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
+    Route::get('dados-canal', [CanalController::class, 'dadosCanal']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

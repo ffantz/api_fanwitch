@@ -28,12 +28,39 @@ class CanalBO
      */
     public function initialize(): object
     {
-        return CanalRepository::initialize([ 'usuario', 'seguidores' => function ($query) {
-            $query->with("usuario");
-        }])->map(function ($canal) {
+        $listaCanais = [];
+        $canais = CanalRepository::initialize([ 'usuario', 'seguidores' ]);
+        foreach ($canais as $canal) {
+            $listaCanais[] = [
+                'id'            => $canal->id,
+                'uuid'          => $canal->uuid,
+                'id_usuario'    => $canal->id_usuario,
+                'nome_canal'    => $canal->nome_canal,
+                'username'      => $canal->username,
+                'status'        => $canal->status,
+                'avatar'        => $canal->avatar,
+                'foto_capa'     => $canal->foto_capa,
+                'seguidores'    => count($canal->seguidores),
+                'recomendacoes' => count($canal->seguidores->where("recomendado", 1)),
+                'inscricoes'    => count($canal->seguidores->where("inscrito", 1)),
+                'seguido'       => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)) > 0 ? true : false,
+            ];
+        };
+
+        return collect($listaCanais);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return Object
+     */
+    public function dadosCanal(): object
+    {
+        return CanalRepository::dadosCanal([ 'usuario', 'seguidores' ])->map(function ($canal) {
             $canal->recomendacoes = count($canal->seguidores->where("recomendado", 1));
             $canal->inscricoes = count($canal->seguidores->where("inscrito", 1));
-            $canal->seguido = count($canal->seguidores);
+            $canal->seguido = \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)) > 0 ? true : false;
             return $canal;
         });
     }
