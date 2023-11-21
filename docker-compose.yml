@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api_fanwitch
+    container_name: laravel-container
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html/api_fanwitch
+    ports:
+      - "8012:8000"
+    depends_on:
+      - mysql
+    networks:
+      - laravel-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fanwitch
+      MYSQL_USER: usuario_api_fanwitch
+      MYSQL_PASSWORD: 'c.XQP@)GWD}MMF^!EFISthUmNbZ8}*l*'
+    ports:
+      - "3307:3306"
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
