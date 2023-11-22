@@ -56,6 +56,7 @@ class UsuarioController extends Controller
             $this->message = "Erro ao cadastrar";
         } else {
             $this->message = "Cadastro realizado com sucesso. Valide seu email e termine de preencher seu perfil";
+            $this->return = (new AuthController())->login($request);
         }
 
         return collection($this->return, $this->code, $this->message);
