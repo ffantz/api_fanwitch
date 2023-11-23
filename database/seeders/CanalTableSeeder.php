@@ -31,6 +31,7 @@ class CanalTableSeeder extends Seeder
                     "id_usuario" => $usuario->id,
                     "nome_canal" => $faker->name(),
                     "username" => $faker->userName(),
+                    "descricao" => $faker->text(),
                     "status" => (string) \truemod($key, 2),
                     "avatar" => (\truemod($key, 2) ? "no_photo" : "profile") . ".png",
                     "foto_capa" => "capa" . (\truemod($key, 2) ? "1" : "2") . ".jpg",

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->usuario();
             $table->string('nome_canal', 75);
             $table->string('username', 45);
+            $table->text('descricao');
             $table->status();
             $table->string('avatar', 100)->nullable();
             $table->string('foto_capa', 100)->nullable();
