@@ -66,12 +66,15 @@ class UsuarioRequest extends CustomRulesRequest
     public function messages(): array
     {
         return [
+            'username.required' => 'O nome de usuário é obrigatório!',
             'username.max' => 'O nome de usuário deve ter no máximo 35 caracteres!',
             'username.unique' => 'O nome de usuário já está cadastrado!',
 
+            'email.required' => 'O email é obrigatório!',
             'email.max' => 'O email deve ter no máximo 100 caracteres!',
             'email.unique' => 'O email já está cadastrado!',
 
+            'password.required' => 'A senha é obrigatória!',
             'password.max' => 'A senha deve ter no máximo 100 caracteres!',
             'password.min' => 'A senha deve ter no mínimo 6 caracteres!',
 
