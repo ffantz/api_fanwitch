@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController,CanalController,NotificacoesController,UsuarioController,UsuarioHasCanalController};
+use App\Http\Controllers\{AuthController,CanalController,MensagemController,NotificacoesController,UsuarioController,UsuarioHasCanalController};
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
     Route::post('acao-canal', [UsuarioHasCanalController::class, 'acaoCanal']);
 
     Route::resource('notificacoes', NotificacoesController::class);
+
+    Route::get('initialize-mensagens', [MensagemController::class, 'initialize']);
 
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
     Route::get('dados-canal', [CanalController::class, 'dadosCanal']);

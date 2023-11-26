@@ -28,7 +28,20 @@ class MensagemBO
      */
     public function initialize(): object
     {
-        $retorno = new \stdClass();
+        $retorno = [];
+        $usuarios = [ 'mensagens' ];
+        $mensagens = MensagemRepository::initialize();
+        foreach ($mensagens as $mensagem) {
+            if (!isset($usuarios[$mensagem->id_usuario_remetente])) {
+                $usuarios[$mensagem->id_usuario_remetente] = (new UsuarioBO())->findById($mensagem->id_usuario_remetente);
+            }
+
+            if (!isset($usuarios[$mensagem->id_usuario_destinatario])) {
+                $usuarios[$mensagem->id_usuario_destinatario] = (new UsuarioBO())->findById($mensagem->id_usuario_destinatario);
+            }
+
+            $retorno['mensagens']
+        }
 
         return $retorno;
     }

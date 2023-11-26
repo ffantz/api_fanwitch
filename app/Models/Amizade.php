@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Amizade extends BaseModel
 {
-    use Uuid;
     use HasCompositePrimaryKey;
 
     protected $table = 'amizade';

@@ -24,4 +24,12 @@ class MensagemRepository extends GenericRepository implements RepositoryInterfac
     {
         return (new Mensagem())->getKeyName();
     }
+
+    public static function initialize($with = []): Collection
+    {
+        return Mensagem::where('id_usuario_remetente', \Auth::user()->id)
+            ->orWhere('id_usuario_destinatario', \Auth::user()->id)
+            ->get()
+            ;
+    }
 }
