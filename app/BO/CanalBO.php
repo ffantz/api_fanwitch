@@ -69,6 +69,38 @@ class CanalBO
     }
 
     /**
+     * Return initialization page data
+     *
+     * @return Object
+     */
+    public function pesquisar($request): object
+    {
+        $listaCanais = [];
+        $canais = CanalRepository::pesquisar($request->nome, [ 'usuario', 'seguidores' ]);
+        foreach ($canais as $canal) {
+            $listaCanais[] = [
+                'id'            => $canal->id,
+                'uuid'          => $canal->uuid,
+                'id_usuario'    => $canal->id_usuario,
+                'nome_canal'    => $canal->nome_canal,
+                'username'      => $canal->username,
+                'descricao'     => $canal->descricao,
+                'status'        => $canal->status,
+                'avatar'        => $canal->avatar,
+                'foto_capa'     => $canal->foto_capa,
+                'seguidores'    => count($canal->seguidores),
+                'recomendacoes' => count($canal->seguidores->where("recomendado", 1)),
+                'inscricoes'    => count($canal->seguidores->where("inscrito", 1)),
+                'seguido'       => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)) > 0 ? true : false,
+                'inscrito'      => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("recomendado", 1)) > 0 ? true : false,
+                'recomendado'   => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("inscrito", 1)) > 0 ? true : false,
+            ];
+        };
+
+        return collect($listaCanais);
+    }
+
+    /**
      * Displays a resource's list
      *
      * @return LengthAwarePaginator

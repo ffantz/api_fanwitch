@@ -21,6 +21,9 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/cadastrar', [UsuarioController::class, 'cadastrar']);
 
+Route::post('pesquisar-usuario', [UsuarioController::class, 'pesquisar']);
+Route::post('pesquisar-canal', [CanalController::class, 'pesquisar']);
+
 Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () {
     Route::get('dados-usuario', [UsuarioController::class, 'dadosUsuario']);
     Route::post('atualizar-informacoes', [UsuarioController::class, 'atualizarInformacoes']);

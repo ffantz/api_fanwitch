@@ -46,6 +46,24 @@ class UsuarioController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
+    public function pesquisar(Request $request)
+    {
+        $usuarioBO = new UsuarioBO();
+        $this->return = $usuarioBO->pesquisar($request);
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar os dados";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
     public function cadastrar(UsuarioRequest $request)
     {
         $usuarioBO = new UsuarioBO();

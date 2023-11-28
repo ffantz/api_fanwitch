@@ -29,4 +29,12 @@ class CanalRepository extends GenericRepository implements RepositoryInterface
     {
         return Canal::with($with)->orderBy('status', 'DESC')->get();
     }
+
+    public static function pesquisar($nome, $with = []): ?Collection
+    {
+        return Canal::where('nome_canal', 'like', '%' . $nome . '%')
+            ->orWhere('username', 'like', '%' . $nome . '%')
+            ->with($with)
+            ->get();
+    }
 }

@@ -34,6 +34,14 @@ class UsuarioRepository
             ->first();
     }
 
+    public static function pesquisar($nome, $with = []): Collection
+    {
+        return Usuario::where('nome', 'like', '%' . $nome . '%')
+            ->orWhere('username', 'like', '%' . $nome . '%')
+            ->with($with)
+            ->get();
+    }
+
     /**
      * Obtem o nome da classe que realizou o acionamento
      *

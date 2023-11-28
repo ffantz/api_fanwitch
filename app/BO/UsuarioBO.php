@@ -34,6 +34,16 @@ class UsuarioBO
     }
 
     /**
+     * Return initialization page data
+     *
+     * @return Object
+     */
+    public function pesquisar($request): object
+    {
+        return UsuarioRepository::pesquisar($request->nome, [ 'canal' ]);
+    }
+
+    /**
      * Displays a resource's list
      *
      * @return LengthAwarePaginator
