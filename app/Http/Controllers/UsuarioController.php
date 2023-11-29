@@ -85,6 +85,26 @@ class UsuarioController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
+    public function removerFoto(Request $request)
+    {
+        $usuarioBO = new UsuarioBO();
+        $this->return = $usuarioBO->removerFoto($request);
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        } else {
+            $this->message = "Foto removida com sucesso.";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
     public function atualizarInformacoes(UsuarioRequest $request)
     {
         $usuarioBO = new UsuarioBO();

@@ -85,6 +85,19 @@ class CanalBO
         return collect($listaCanais);
     }
 
+    public function removerFoto($request)
+    {
+        $canal = $this->findByUuid($request->uuid);
+
+        $request->campo == 'avatar' ?
+            unlink(storage_path('app/public/imagens/perfil/' . $canal->avatar)) :
+            unlink(storage_path('app/public/imagens/capa/' . $canal->foto_capa));
+
+        $campo = $request->campo;
+        $canal->$campo = null;
+        return $canal->update();
+    }
+
     /**
      * Displays a resource's list
      *
@@ -193,6 +206,7 @@ class CanalBO
      */
     public function destroy($canal): bool
     {
+        (new UsuarioHasCanalBO())->deletarCanal($canal->id);
         return CanalRepository::destroy($canal);
     }
 

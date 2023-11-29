@@ -78,6 +78,26 @@ class CanalController extends Controller
     }
 
     /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function removerFoto(Request $request)
+    {
+        $canalBO = new CanalBO();
+        $this->return = $canalBO->removerFoto($request);
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        } else {
+            $this->message = "Foto removida com sucesso.";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
      * Displays a resource's list
      *
      * @return \Illuminate\Http\Response
@@ -194,6 +214,8 @@ class CanalController extends Controller
         if (!$this->return) {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao remover";
+        } else {
+            $this->message = "Canal deletado com sucesso.";
         }
 
         return collection($this->return, $this->code, $this->message);

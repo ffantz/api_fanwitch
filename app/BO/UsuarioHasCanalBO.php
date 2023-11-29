@@ -143,4 +143,17 @@ class UsuarioHasCanalBO
 
         return UsuarioHasCanalRepository::updateOrCreate($this->prepare($request));
     }
+
+    public function deletarCanal($idCanal)
+    {
+        $canais = UsuarioHasCanal::whereIdCanal($idCanal)->get();
+
+        $status = false;
+        foreach ($canais as $canal)
+        {
+            $status = $canal->delete();
+        }
+
+        return $status;
+    }
 }

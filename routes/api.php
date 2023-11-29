@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
     Route::post('atualizar-informacoes', [UsuarioController::class, 'atualizarInformacoes']);
     Route::post('validar-email', [UsuarioController::class, 'validarEmail']);
     Route::post('pesquisa-usuario', [UsuarioController::class, 'pesquisar']);
+    Route::post('usuario/deletar-foto', [UsuarioController::class, 'removerFoto']);
 
     Route::post('solicitacao-amizade', [AmizadeController::class, 'solicitacaoAmizade']);
     Route::post('remover-amizade', [AmizadeController::class, 'removerAmizade']);
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
     Route::resource('canal', CanalController::class);
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
     Route::post('pesquisa-canal', [CanalController::class, 'pesquisar']);
+    Route::post('canal/deletar-foto', [CanalController::class, 'removerFoto']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

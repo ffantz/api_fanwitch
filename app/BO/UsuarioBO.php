@@ -67,6 +67,16 @@ class UsuarioBO
         return $listaUsuarios;
     }
 
+    public function removerFoto($request)
+    {
+        $usuario = $this->findByUuid($request->uuid);
+
+        unlink(storage_path('app/public/imagens/perfil/' . $usuario->avatar));
+
+        $usuario->avatar = null;
+        return $usuario->update();
+    }
+
     /**
      * Displays a resource's list
      *
