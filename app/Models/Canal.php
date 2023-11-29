@@ -21,6 +21,7 @@ class Canal extends BaseModel
         "id_usuario",
         "nome_canal",
         "username",
+        "descricao",
         "status",
         "avatar",
         "foto_capa",

@@ -58,21 +58,6 @@ class CanalBO
      *
      * @return Object
      */
-    public function dadosCanal(): object
-    {
-        return CanalRepository::dadosCanal([ 'usuario', 'seguidores' ])->map(function ($canal) {
-            $canal->recomendacoes = count($canal->seguidores->where("recomendado", 1));
-            $canal->inscricoes = count($canal->seguidores->where("inscrito", 1));
-            $canal->seguido = \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)) > 0 ? true : false;
-            return $canal;
-        });
-    }
-
-    /**
-     * Return initialization page data
-     *
-     * @return Object
-     */
     public function pesquisar($request): object
     {
         $listaCanais = [];
@@ -148,6 +133,14 @@ class CanalBO
      */
     public function store($request): Canal
     {
+        if ($request->has('imagem_avatar')) {
+            \upload($request, "avatar", $request->file('imagem_avatar'), "public/imagens/perfil");
+        }
+
+        if ($request->has('imagem_capa')) {
+            \upload($request, "capa", $request->file('imagem_capa'), "public/imagens/capa");
+        }
+
         return CanalRepository::store($this->prepare($request));
     }
 
@@ -181,6 +174,14 @@ class CanalBO
      */
     public function update($request, $canal): bool
     {
+        if ($request->has('imagem_avatar')) {
+            \upload($request, "avatar", $request->file('imagem_avatar'), "public/imagens/perfil");
+        }
+
+        if ($request->has('imagem_capa')) {
+            \upload($request, "capa", $request->file('imagem_capa'), "public/imagens/capa");
+        }
+
         return CanalRepository::update($this->prepare($request, $canal), $canal);
     }
 

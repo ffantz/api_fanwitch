@@ -22,7 +22,13 @@ class Notificacoes extends BaseModel
         "titulo",
         "texto",
         "lida",
+        "id_tipo_notificacao",
     ];
+
+    public function tipoNotificacao()
+    {
+        return $this->hasOne(TipoNotificacao::class, 'id', 'id_tipo_notificacao');
+    }
 
     /**
      * Prepare a date for array / JSON serialization.

@@ -24,4 +24,24 @@ class AmizadeRepository extends GenericRepository implements RepositoryInterface
     {
         return (new Amizade())->getKeyName();
     }
+
+    public static function buscaPedidoAmizade($usuarioSolicitante): Amizade
+    {
+        return Amizade::where("id_usuario", $usuarioSolicitante)
+            ->where("id_usuario_adicionado", \Auth::user()->id)
+            ->first();
+    }
+
+    public static function buscaAmizade($dados): Amizade
+    {
+        return Amizade::where(function ($query) use ($dados) {
+            $query->where("id_usuario", $dados["id_usuario"]);
+            $query->where("id_usuario_adicionado", $dados["id_usuario_adicionado"]);
+        })
+            ->orWhere(function ($query) use ($dados) {
+                $query->where("id_usuario_adicionado", $dados["id_usuario"]);
+                $query->where("id_usuario", $dados["id_usuario_adicionado"]);
+        })
+            ->first();
+    }
 }

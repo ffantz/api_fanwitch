@@ -26,12 +26,13 @@ trait CanalTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
+        $arrayRetorno['id_usuario'] = \Auth::user()->id;
         $arrayRetorno['nome_canal'] = $objetoRequest->nome_canal;
         $arrayRetorno['username']   = $objetoRequest->username;
+        $arrayRetorno['descricao']  = $objetoRequest->descricao;
         $arrayRetorno['status']     = $objetoRequest->status;
-        $arrayRetorno['avatar']     = $objetoRequest->avatar;
-        $arrayRetorno['foto_capa']  = $objetoRequest->foto_capa;
+        $arrayRetorno['avatar']     = $objetoRequest->get('file-avatar');
+        $arrayRetorno['foto_capa']  = $objetoRequest->get('file-capa');
 
         return array_filter($arrayRetorno);
     }
@@ -63,12 +64,11 @@ trait CanalTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
         $arrayRetorno['nome_canal'] = $objetoRequest->nome_canal;
-        $arrayRetorno['username']   = $objetoRequest->username;
+        $arrayRetorno['descricao']  = $objetoRequest->descricao;
         $arrayRetorno['status']     = $objetoRequest->status;
-        $arrayRetorno['avatar']     = $objetoRequest->avatar;
-        $arrayRetorno['foto_capa']  = $objetoRequest->foto_capa;
+        $arrayRetorno['avatar']     = $objetoRequest->get('file-avatar');
+        $arrayRetorno['foto_capa']  = $objetoRequest->get('file-capa');
 
         return array_filter($arrayRetorno);
     }

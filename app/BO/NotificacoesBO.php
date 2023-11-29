@@ -114,6 +114,10 @@ class NotificacoesBO
      */
     public function update($request, $notificacoes): bool
     {
+        if ($request->has('acao')) {
+            (new AmizadeBO())->aceitarRecusarSolicitacao($request, $notificacoes);
+        }
+
         return NotificacoesRepository::update($this->prepare($request, $notificacoes), $notificacoes);
     }
 
@@ -140,6 +144,18 @@ class NotificacoesBO
             'titulo' => 'Seja bem vindo(a)!',
             'texto' => 'Esta é uma notificação inicial. Seja respeitoso(a) com os demais e bom divertimento!',
             'lida' => '0',
+            'id_tipo_notificacao' => 1,
+        ]));
+    }
+
+    public function inserirNotificacaoAmizade($usuario)
+    {
+        return $this->store(new Request([
+            'id_usuario' => $usuario,
+            'titulo' => 'Nova solicitação de amizade',
+            'texto' => \Auth::user()->username . ' lhe enviou uma solicitação de amizade',
+            'lida' => '0',
+            'id_tipo_notificacao' => 2,
         ]));
     }
 }

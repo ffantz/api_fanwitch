@@ -44,7 +44,6 @@ class UsuarioRequest extends CustomRulesRequest
     public function validateToAtualizarInformacoes(): array
     {
         return [
-            'email' => 'unique:usuario,email|max:100',
             'data_nascimento' => 'date',
             'nome' => 'max:70',
         ];

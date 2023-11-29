@@ -28,6 +28,42 @@ class AmizadeController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
+    public function solicitacaoAmizade(Request $request)
+    {
+        $amizadeBO = new AmizadeBO();
+        $this->return = $amizadeBO->solicitacaoAmizade($request);
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function removerAmizade(Request $request)
+    {
+        $amizadeBO = new AmizadeBO();
+        $this->return = $amizadeBO->removerAmizade($request);
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
     public function initialize()
     {
         $amizadeBO = new AmizadeBO();

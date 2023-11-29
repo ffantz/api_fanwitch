@@ -1,17 +1,16 @@
 <?php
-
 namespace App\Http\Requests;
 
 use App\Http\Requests\CustomRulesRequest;
 
-class CanalRequest extends CustomRulesRequest
+class TipoNotificacaoRequest extends CustomRulesRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return Bool
      */
-    public function authorize(): bool
+    public function authorize(): Bool
     {
         return true;
     }
@@ -19,7 +18,7 @@ class CanalRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateDefault(): array
+    public function validateDefault(): Array
     {
         return [
             // Your default validation
@@ -29,38 +28,39 @@ class CanalRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function validateToStore(): array
-    {
-        return [
-            'username' => 'required|unique:canal,username|max:35',
-            'nome_canal' => 'required|max:75',
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToSave(): array
+    public function validateToStore(): Array
     {
         return [
             // 'name' => 'required|max:60',
         ];
+
     }
 
     /**
      * @return Array
      */
-    public function validateToUpdate(): array
+    public function validateToSave(): Array
     {
         return [
-            'nome_canal' => 'max:75',
+            // 'name' => 'required|max:60',
+        ];
+
+    }
+
+    /**
+     * @return Array
+     */
+    public function validateToUpdate(): Array
+    {
+        return [
+            // 'name' => 'max:60',
         ];
     }
 
     /**
      * @return Array
      */
-    public function validateToDestroy(): array
+    public function validateToDestroy(): Array
     {
         return [
             // 'id' => 'required',
@@ -70,14 +70,10 @@ class CanalRequest extends CustomRulesRequest
     /**
      * @return Array
      */
-    public function messages(): array
+    public function messages(): Array
     {
         return [
-            'username.required' => 'O nome de usuário é obrigatório!',
-            'username.max' => 'O nome de usuário deve ter no máximo 35 caracteres!',
-            'username.unique' => 'O nome de usuário já está cadastrado!',
-
-            'nome_canal.max' => 'O nome do canal deve ter no máximo 75 caracteres!',
+            // 'id.required' => 'O id é obrigatório!',
         ];
     }
 

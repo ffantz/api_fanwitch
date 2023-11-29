@@ -26,10 +26,11 @@ trait NotificacoesTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
-        $arrayRetorno['titulo']     = $objetoRequest->titulo;
-        $arrayRetorno['texto']      = $objetoRequest->texto;
-        $arrayRetorno['lida']       = $objetoRequest->lida;
+        $arrayRetorno['id_usuario']          = $objetoRequest->id_usuario;
+        $arrayRetorno['titulo']              = $objetoRequest->titulo;
+        $arrayRetorno['texto']               = $objetoRequest->texto;
+        $arrayRetorno['lida']                = $objetoRequest->lida;
+        $arrayRetorno['id_tipo_notificacao'] = $objetoRequest->id_tipo_notificacao;
 
         return array_filter($arrayRetorno);
     }
@@ -61,10 +62,11 @@ trait NotificacoesTrait
         $objetoClasse                    = $params['object'];
 
         $arrayRetorno = [];
-        $arrayRetorno['id_usuario'] = $objetoRequest->id_usuario;
-        $arrayRetorno['titulo']     = $objetoRequest->titulo;
-        $arrayRetorno['texto']      = $objetoRequest->texto;
-        $arrayRetorno['lida']       = $objetoRequest->lida;
+        $arrayRetorno['id_usuario']          = $objetoRequest->id_usuario;
+        $arrayRetorno['titulo']              = $objetoRequest->titulo;
+        $arrayRetorno['texto']               = $objetoRequest->texto;
+        $arrayRetorno['lida']                = $objetoRequest->lida;
+        $arrayRetorno['id_tipo_notificacao'] = $objetoRequest->id_tipo_notificacao;
 
         return array_filter($arrayRetorno);
     }

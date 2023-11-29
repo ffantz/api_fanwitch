@@ -29,6 +29,8 @@ class UsuarioRepository
     {
         return Usuario::whereId(\Auth::user()->id)
             ->with([ 'canal', 'seguindo', 'notificacoes' => function ($query) {
+                $query->join('tipo_notificacao', 'notificacoes.id_tipo_notificacao', '=', 'tipo_notificacao.id');
+                $query->select([ 'notificacoes.*', 'tipo_notificacao.sigla AS sigla']);
                 $query->orderBy('notificacoes.created_at', 'DESC');
             } ])
             ->first();
@@ -40,6 +42,12 @@ class UsuarioRepository
             ->orWhere('username', 'like', '%' . $nome . '%')
             ->with($with)
             ->get();
+    }
+
+    public static function findByUsername($username): Usuario
+    {
+        return Usuario::whereUsername($username)
+            ->first();
     }
 
     /**

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController,CanalController,MensagemController,NotificacoesController,UsuarioController,UsuarioHasCanalController};
+use App\Http\Controllers\{AmizadeController,AuthController,CanalController,MensagemController,NotificacoesController,UsuarioController,UsuarioHasCanalController};
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
     Route::get('dados-usuario', [UsuarioController::class, 'dadosUsuario']);
     Route::post('atualizar-informacoes', [UsuarioController::class, 'atualizarInformacoes']);
     Route::post('validar-email', [UsuarioController::class, 'validarEmail']);
+    Route::post('pesquisa-usuario', [UsuarioController::class, 'pesquisar']);
+
+    Route::post('solicitacao-amizade', [AmizadeController::class, 'solicitacaoAmizade']);
+    Route::post('remover-amizade', [AmizadeController::class, 'removerAmizade']);
 
     Route::post('acao-canal', [UsuarioHasCanalController::class, 'acaoCanal']);
 
@@ -35,8 +39,9 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
 
     Route::get('initialize-mensagens', [MensagemController::class, 'initialize']);
 
+    Route::resource('canal', CanalController::class);
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
-    Route::get('dados-canal', [CanalController::class, 'dadosCanal']);
+    Route::post('pesquisa-canal', [CanalController::class, 'pesquisar']);
 
     Route::get('logout', [AuthController::class, 'logout']);
 });

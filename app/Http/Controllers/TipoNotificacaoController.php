@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Canal;
-use App\Http\Requests\CanalRequest;
-use App\BO\CanalBO;
+use App\Models\TipoNotificacao;
+use App\Http\Requests\TipoNotificacaoRequest;
+use App\BO\TipoNotificacaoBO;
 
-class CanalController extends Controller
+class TipoNotificacaoController extends Controller
 {
     private $return;
     private $code;
@@ -30,46 +29,11 @@ class CanalController extends Controller
      */
     public function initialize()
     {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->initialize();
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->initialize();
 
-        if (!$this->return) {
-            $this->code    = config('httpstatus.server_error.internal_server_error');
-            $this->message = "Erro ao buscar";
-        }
-
-        return collection($this->return, $this->code, $this->message);
-    }
-
-    /**
-     * Return initialization page data
-     *
-     * @return  \Illuminate\Http\Response
-     */
-    public function initializeUsuario()
-    {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->initialize();
-
-        if (!$this->return) {
-            $this->code    = config('httpstatus.server_error.internal_server_error');
-            $this->message = "Erro ao buscar";
-        }
-
-        return collection($this->return, $this->code, $this->message);
-    }
-
-    /**
-     * Return initialization page data
-     *
-     * @return  \Illuminate\Http\Response
-     */
-    public function pesquisar(Request $request)
-    {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->pesquisar($request);
-
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao buscar";
         }
@@ -84,10 +48,11 @@ class CanalController extends Controller
      */
     public function index()
     {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->index();
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->index();
 
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao buscar";
         }
@@ -98,20 +63,19 @@ class CanalController extends Controller
     /**
      * Store a new resource in storage.
      *
-     * @param  \App\Http\Requests\CanalRequest  $request
+     * @param  \App\Http\Requests\TipoNotificacaoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CanalRequest $request)
+    public function store(TipoNotificacaoRequest $request)
     {
         $this->code = config('httpstatus.success.created');
 
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->store($request);
-        if (!$this->return) {
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->store($request);
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao salvar";
-        } else {
-            $this->message = "Canal criado com sucesso.";
         }
 
         return collection($this->return, $this->code, $this->message);
@@ -120,16 +84,17 @@ class CanalController extends Controller
     /**
      * Store a new resource in storage.
      *
-     * @param  \App\Http\Requests\CanalRequest  $request
+     * @param  \App\Http\Requests\TipoNotificacaoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function save(CanalRequest $request)
+    public function save(TipoNotificacaoRequest $request)
     {
         $this->code = config('httpstatus.success.created');
 
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->save($request);
-        if (!$this->return) {
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->save($request);
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao salvar";
         }
@@ -140,15 +105,16 @@ class CanalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Canal  $canal
+     * @param  \App\Models\TipoNotificacao  $tipoNotificacao
      * @return \Illuminate\Http\Response
      */
-    public function show(Canal $canal)
+    public function show(TipoNotificacao $tipoNotificacao)
     {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->show($canal);
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->show($tipoNotificacao);
 
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao exibir";
         }
@@ -159,22 +125,21 @@ class CanalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\CanalRequest  $request
-     * @param  \App\Models\Canal  $canal
+     * @param  \App\Http\Requests\TipoNotificacaoRequest  $request
+     * @param  \App\Models\TipoNotificacao  $tipoNotificacao
      * @return \Illuminate\Http\Response
      */
-    public function update(CanalRequest $request, Canal $canal)
+    public function update(TipoNotificacaoRequest $request, TipoNotificacao $tipoNotificacao)
     {
         $this->code = config('httpstatus.success.created');
 
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->update($request, $canal);
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->update($request, $tipoNotificacao);
 
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao editar";
-        } else {
-            $this->message = "Canal atualizado com sucesso.";
         }
 
         return collection($this->return, $this->code, $this->message);
@@ -183,15 +148,16 @@ class CanalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Canal  $canal
+     * @param  \App\Models\TipoNotificacao  $tipoNotificacao
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Canal $canal)
+    public function destroy(TipoNotificacao $tipoNotificacao)
     {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->destroy($canal);
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->destroy($tipoNotificacao);
 
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao remover";
         }
@@ -201,10 +167,11 @@ class CanalController extends Controller
 
     public function downloadArquivoModelo()
     {
-        $canalBO = new CanalBO();
-        $this->return = $canalBO->downloadArquivoModelo();
+        $tipoNotificacaoBO = new TipoNotificacaoBO();
+        $this->return = $tipoNotificacaoBO->downloadArquivoModelo();
 
-        if (!$this->return) {
+        if (!$this->return)
+        {
             $this->code    = config('httpstatus.server_error.internal_server_error');
             $this->message = "Erro ao baixar o arquivo";
             return collection(false, $this->code, $this->message);

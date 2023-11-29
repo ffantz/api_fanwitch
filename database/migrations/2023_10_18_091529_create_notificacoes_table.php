@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('titulo', 90);
             $table->text('texto');
             $table->enum('lida', [0, 1])->default(0);
+            $table->smallInteger('id_tipo_notificacao')->unsigned();
             $table->timestamps();
         });
     }

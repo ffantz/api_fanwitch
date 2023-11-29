@@ -31,9 +31,10 @@ trait UsuarioTrait
         $arrayRetorno['username']          = $objetoRequest->username;
         $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
+        $arrayRetorno['descricao']         = $objetoRequest->descricao;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
         $arrayRetorno['password']          = bcrypt($objetoRequest->password);
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
+        $arrayRetorno['avatar']            = $objetoRequest->get('file-avatar');
         $arrayRetorno['status']            = $objetoRequest->status;
         $arrayRetorno['remember_token']    = Str::random(10);
 
@@ -68,12 +69,11 @@ trait UsuarioTrait
 
         $arrayRetorno = [];
         $arrayRetorno['nome']              = $objetoRequest->nome;
-        $arrayRetorno['username']          = $objetoRequest->username;
-        $arrayRetorno['email']             = $objetoRequest->email;
         $arrayRetorno['data_nascimento']   = $objetoRequest->data_nascimento;
+        $arrayRetorno['descricao']         = $objetoRequest->descricao;
         $arrayRetorno['email_verified_at'] = $objetoRequest->email_verified_at;
-        $arrayRetorno['password']          = bcrypt($objetoRequest->password);
-        $arrayRetorno['avatar']            = $objetoRequest->avatar;
+        $arrayRetorno['password']          = $objetoRequest->has('password') ? bcrypt($objetoRequest->password) : null;
+        $arrayRetorno['avatar']            = $objetoRequest->get('file-avatar');
         $arrayRetorno['status']            = $objetoRequest->status;
 
         return array_filter($arrayRetorno);

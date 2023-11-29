@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nome', 70)->nullable();
             $table->string('username', 35)->unique('username_UNIQUE');
             $table->string('email', 100)->unique('email_UNIQUE');
+            $table->text('descricao')->nullable();
             $table->date('data_nascimento')->nullable();
             $table->dateTime('email_verified_at')->nullable();
             $table->string('password', 100);

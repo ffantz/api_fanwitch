@@ -26,6 +26,7 @@ class NotificacoesTableSeeder extends Seeder
                 "titulo" => "Você tem uma notificação nova!",
                 "texto" => $faker->text(),
                 "lida" => '0',
+                "id_tipo_notificacao" => 1,
             ]);
         }
     }

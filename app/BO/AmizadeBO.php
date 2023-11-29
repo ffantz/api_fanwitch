@@ -132,4 +132,37 @@ class AmizadeBO
     {
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
     }
+
+    public function solicitacaoAmizade($request) {
+        (new NotificacoesBO())->inserirNotificacaoAmizade($request->id_usuario);
+        return $this->store(new Request([
+            "id_usuario"            => \Auth::user()->id,
+            "id_usuario_adicionado" => $request->id_usuario,
+            "status"                => "0",
+        ]));
+    }
+
+    public function removerAmizade($request) {
+        $amizade = AmizadeRepository::buscaAmizade([
+            "id_usuario"            => \Auth::user()->id,
+            "id_usuario_adicionado" => $request->id_usuario,
+        ]);
+
+        return $amizade ? AmizadeRepository::destroy($amizade) : true;
+    }
+
+    public function aceitarRecusarSolicitacao($request, $notificacao)
+    {
+        $usuarioSolicitante = (new UsuarioBO())->findByUsername(explode(" ", $notificacao->texto)[0])->id;
+        $pedidoAmizade = AmizadeRepository::buscaPedidoAmizade($usuarioSolicitante);
+
+        if ($request->acao == '0') {
+            AmizadeRepository::destroy($pedidoAmizade);
+        } else {
+            $pedidoAmizade->status = '1';
+            $pedidoAmizade->update();
+        }
+
+        return;
+    }
 }

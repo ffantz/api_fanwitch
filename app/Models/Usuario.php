@@ -26,6 +26,7 @@ class Usuario extends Authenticatable
         "username",
         "email",
         "data_nascimento",
+        "descricao",
         "email_verified_at",
         "password",
         "avatar",
@@ -45,7 +46,17 @@ class Usuario extends Authenticatable
 
     public function canal()
     {
-        return $this->belongsTo(Canal::class, 'id_usuario');
+        return $this->hasOne(Canal::class, 'id_usuario');
+    }
+
+    public function amigos()
+    {
+        return $this->hasMany(Amizade::class, 'id_usuario_adicionado');
+    }
+
+    public function amigosAdicionados()
+    {
+        return $this->hasMany(Amizade::class, 'id_usuario');
     }
 
     public function notificacoes()

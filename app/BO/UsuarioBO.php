@@ -38,9 +38,33 @@ class UsuarioBO
      *
      * @return Object
      */
-    public function pesquisar($request): object
+    public function pesquisar($request)
     {
-        return UsuarioRepository::pesquisar($request->nome, [ 'canal' ]);
+        $listaUsuarios = [];
+        $usuarios = UsuarioRepository::pesquisar($request->nome, [ 'canal', 'amigos', 'amigosAdicionados' ]);
+        foreach ($usuarios as $usuario) {
+            $listaUsuarios[] = [
+                "id"                => $usuario->id,
+                "nome"              => $usuario->nome,
+                "username"          => $usuario->username,
+                "email"             => $usuario->email,
+                "descricao"         => $usuario->descricao,
+                "data_nascimento"   => $usuario->data_nascimento,
+                "email_verified_at" => $usuario->email_verified_at,
+                "avatar"            => $usuario->avatar,
+                "status"            => $usuario->status,
+                'amigos'            => count($usuario->amigos) + count($usuario->amigosAdicionados),
+                'amigo'             => \Auth::check()
+                    && \Auth::user()->id != $usuario->id
+                    && (count($usuario->amigos->where("id_usuario_adicionado", \Auth::user()->id)) > 0
+                    || count($usuario->amigos->where("id_usuario", \Auth::user()->id)) > 0
+                    || count($usuario->amigosAdicionados->where("id_usuario_adicionado", \Auth::user()->id)) > 0
+                    || count($usuario->amigosAdicionados->where("id_usuario", \Auth::user()->id)) > 0)
+                    ? true : false,
+            ];
+        };
+
+        return $listaUsuarios;
     }
 
     /**
@@ -81,6 +105,16 @@ class UsuarioBO
     public static function findByUuid($uuid): Usuario
     {
         return UsuarioRepository::findByUuid($uuid);
+    }
+
+    /**
+    * Find an specific resource by username
+    *
+    * @return  Usuario
+    */
+    public static function findByUsername($username): Usuario
+    {
+        return UsuarioRepository::findByUsername($username);
     }
 
     /**
@@ -126,6 +160,9 @@ class UsuarioBO
      */
     public function update($request, $usuario): bool
     {
+        if ($request->has('imagem_avatar')) {
+            \upload($request, "avatar", $request->file('imagem_avatar'), "public/imagens/perfil");
+        }
         return UsuarioRepository::update($this->prepare($request, $usuario), $usuario);
     }
 

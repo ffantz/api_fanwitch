@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsuarioTableSeeder::class);
         $this->call(CanalTableSeeder::class);
         $this->call(UsuarioHasCanalTableSeeder::class);
+        $this->call(TipoNotificacaoTableSeeder::class);
         $this->call(NotificacoesTableSeeder::class);
         $this->call(AmizadeTableSeeder::class);
         $this->call(MensagemTableSeeder::class);

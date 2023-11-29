@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('notificacoes', function (Blueprint $table) {
             $table->addFk('usuario', 'fk_n_id_usuario');
+            $table->addFk('tipo_notificacao', 'fk_n_id_tipo_notificacao');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('notificacoes', function (Blueprint $table) {
             $table->dropFk('fk_n_id_usuario');
+            $table->dropFk('fk_n_id_tipo_notificacao');
         });
     }
 };

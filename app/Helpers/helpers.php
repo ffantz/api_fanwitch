@@ -24,3 +24,16 @@ if (!function_exists("truemod")) {
         return ($mod + ($num % $mod)) % $mod;
     }
 }
+
+if (! function_exists('upload')) {
+    function upload($request, $name, $file, $folderName)
+    {
+        $dateTime = \Carbon\Carbon::now()->format('YmdHis');
+        $fileName = "{$name}-{$dateTime}." . ($file->getClientOriginalExtension() ?? $file->extension());
+        $created  = $file->storeAs($folderName, $fileName);
+        if ($created) {
+            $request->merge(["file-{$name}" => $fileName]);
+        }
+        return $created;
+    }
+}

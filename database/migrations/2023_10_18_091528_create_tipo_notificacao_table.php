@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('canal', function (Blueprint $table) {
-            $table->bigInteger('id')->autoIncrement()->unsigned();
+        Schema::create('tipo_notificacao', function (Blueprint $table) {
+            $table->smallInteger('id')->autoIncrement()->unsigned();
             $table->addUuid();
-            $table->usuario();
-            $table->string('nome_canal', 75);
-            $table->string('username', 45);
-            $table->text('descricao')->nullable();
+            $table->string('nome', 30);
+            $table->string('sigla', 4);
             $table->status();
-            $table->string('avatar', 100)->nullable();
-            $table->string('foto_capa', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('canal');
+        Schema::dropIfExists('notificacoes');
     }
 };
