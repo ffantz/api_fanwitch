@@ -41,7 +41,7 @@ class AmizadeRepository extends GenericRepository implements RepositoryInterface
             ->orWhere(function ($query) use ($dados) {
                 $query->where("id_usuario_adicionado", $dados["id_usuario"]);
                 $query->where("id_usuario", $dados["id_usuario_adicionado"]);
-        })
+            })
             ->first();
     }
 }

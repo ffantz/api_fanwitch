@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\TipoNotificacao;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,9 +20,8 @@ class TipoNotificacaoRepository extends GenericRepository implements RepositoryI
         return TipoNotificacao::class;
     }
 
-    public static function getPrimaryKeyName() : string
+    public static function getPrimaryKeyName(): string
     {
-        return (new TipoNotificacao)->getKeyName();
+        return (new TipoNotificacao())->getKeyName();
     }
 }
-

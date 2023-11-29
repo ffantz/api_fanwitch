@@ -133,7 +133,8 @@ class AmizadeBO
         // return storage_path("app/public/modelos/mailing/modelo_importacao.csv");
     }
 
-    public function solicitacaoAmizade($request) {
+    public function solicitacaoAmizade($request)
+    {
         (new NotificacoesBO())->inserirNotificacaoAmizade($request->id_usuario);
         return $this->store(new Request([
             "id_usuario"            => \Auth::user()->id,
@@ -142,7 +143,8 @@ class AmizadeBO
         ]));
     }
 
-    public function removerAmizade($request) {
+    public function removerAmizade($request)
+    {
         $amizade = AmizadeRepository::buscaAmizade([
             "id_usuario"            => \Auth::user()->id,
             "id_usuario_adicionado" => $request->id_usuario,
