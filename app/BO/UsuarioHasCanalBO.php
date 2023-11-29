@@ -149,8 +149,7 @@ class UsuarioHasCanalBO
         $canais = UsuarioHasCanal::whereIdCanal($idCanal)->get();
 
         $status = false;
-        foreach ($canais as $canal)
-        {
+        foreach ($canais as $canal) {
             $status = $canal->delete();
         }
 
