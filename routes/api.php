@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:5000,1']], function () 
 
     Route::resource('canal', CanalController::class);
     Route::get('initialize-usuario', [CanalController::class, 'initialize']);
+    Route::get('busca-canais-recomendados', [CanalController::class, 'buscaCanaisRecomendados']);
     Route::post('pesquisa-canal', [CanalController::class, 'pesquisar']);
     Route::post('canal/deletar-foto', [CanalController::class, 'removerFoto']);
 

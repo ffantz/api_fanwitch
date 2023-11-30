@@ -58,6 +58,19 @@ class CanalBO
      *
      * @return Object
      */
+    public function buscaCanaisRecomendados(): object
+    {
+        return CanalRepository::buscaCanaisRecomendados()->map(function ($item) {
+            $item->qtdSeguidores = count($item->seguidores);
+            return $item;
+        });
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return Object
+     */
     public function pesquisar($request): object
     {
         $listaCanais = [];
@@ -77,8 +90,8 @@ class CanalBO
                 'recomendacoes' => count($canal->seguidores->where("recomendado", 1)),
                 'inscricoes'    => count($canal->seguidores->where("inscrito", 1)),
                 'seguido'       => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)) > 0 ? true : false,
-                'inscrito'      => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("recomendado", 1)) > 0 ? true : false,
-                'recomendado'   => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("inscrito", 1)) > 0 ? true : false,
+                'inscrito'      => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("inscrito", 1)) > 0 ? true : false,
+                'recomendado'   => \Auth::check() && count($canal->seguidores->where("id_usuario", \Auth::user()->id)->where("recomendado", 1)) > 0 ? true : false,
             ];
         };
 

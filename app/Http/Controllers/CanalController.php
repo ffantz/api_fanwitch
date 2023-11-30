@@ -64,6 +64,24 @@ class CanalController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
+    public function buscaCanaisRecomendados()
+    {
+        $canalBO = new CanalBO();
+        $this->return = $canalBO->buscaCanaisRecomendados();
+
+        if (!$this->return) {
+            $this->code    = config('httpstatus.server_error.internal_server_error');
+            $this->message = "Erro ao buscar";
+        }
+
+        return collection($this->return, $this->code, $this->message);
+    }
+
+    /**
+     * Return initialization page data
+     *
+     * @return  \Illuminate\Http\Response
+     */
     public function pesquisar(Request $request)
     {
         $canalBO = new CanalBO();

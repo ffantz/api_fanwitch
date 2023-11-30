@@ -27,7 +27,19 @@ class CanalRepository extends GenericRepository implements RepositoryInterface
 
     public static function initialize($with = []): ?Collection
     {
-        return Canal::with($with)->orderBy('status', 'DESC')->get();
+        return Canal::with($with)
+            ->orderBy('status', 'DESC')
+            ->get();
+    }
+
+    public static function buscaCanaisRecomendados(): ?Collection
+    {
+        return Canal::select('canal.*')
+            ->orderBy('status', 'DESC')
+            ->join('usuario_has_canal AS uhc', 'uhc.id_canal', '=', 'canal.id')
+            ->where('uhc.id_usuario', \Auth::user()->id)
+            ->where('uhc.recomendado', '1')
+            ->get();
     }
 
     public static function updateOrCreate($dados): ?Collection
