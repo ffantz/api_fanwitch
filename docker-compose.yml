@@ -11,11 +11,11 @@ services:
     ports:
       - "8012:8000"
     depends_on:
-      - mysql
+      - banco_de_dados
     networks:
-      - laravel-network
+      - fanwitch-network
 
-  mysql:
+  banco_de_dados:
     image: mysql:8.0
     container_name: api-fanwitch-mysql-container
     restart: unless-stopped
@@ -27,7 +27,8 @@ services:
     ports:
       - "3307:3306"
     networks:
-      - laravel-network
+      - fanwitch-network
 
 networks:
-  laravel-network:
+  fanwitch-network:
+    driver: bridge
