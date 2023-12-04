@@ -19,7 +19,7 @@ RUN apt-get update \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copiar o código da aplicação
-COPY . $APP_DIR
+COPY . .
 
 # Copiar o arquivo de ambiente
 COPY .env.example .env
