@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: api_fanwitch
-    container_name: laravel-container
+    container_name: api-fanwitch-laravel-container
     restart: unless-stopped
     ports:
       - "8012:8000"
@@ -17,7 +17,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: mysql-container
+    container_name: api-fanwitch-mysql-container
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
